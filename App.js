@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Button from './src/Components/Button/Button';
+import Form from './src/Components/Form/Form';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Button />
+      <Form />
     </View>
   );
 }
@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+    flexDirection: 'column'
   },
 
 });
