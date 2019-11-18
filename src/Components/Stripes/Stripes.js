@@ -15,8 +15,7 @@ export default class Stripes extends Component {
     const stripeRenderer = (count) => {
       if(count > 0 && count < 5) {
         for(let i = 1; i < count + 1; i++) {
-          console.log(count)
-          stripeArray.push(<View key={i} style={styles.stripe}></View>)
+          stripeArray.push(<View key={i} style={styles.stripe}></View>);
         }
       }
       return stripeArray;
