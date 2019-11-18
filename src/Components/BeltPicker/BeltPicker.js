@@ -19,12 +19,13 @@ export default class BeltPicker extends Component {
           borderColor: "black",
           borderWidth: 4,
           borderRadius: 10,
-          marginBottom: 10
+          marginBottom: 10,
         }}
       >
         <Picker
           selectedValue={this.state.color}
           style={{
+            
             height: 40
           }}
           onValueChange={(itemValue, itemIndex) =>
@@ -32,7 +33,7 @@ export default class BeltPicker extends Component {
           }
         >
           {this.state.colors.map(v => {
-            return <Picker.Item label={v} value={v} key={v} />;
+            return <Picker.Item  label={v} value={v} key={v} />;
           })}
         </Picker>
       </View>

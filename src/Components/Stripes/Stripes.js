@@ -31,7 +31,7 @@ export default class Stripes extends Component {
         <Button 
         title=" + "
         onPress={() => {
-          if(this.state.count < 5){
+          if(this.state.count < 4){
             this.setState({count: this.state.count + 1}) 
           } else {
             this.setState({count: 0})
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   container: {
     height: 70,
     flexDirection: "row",
+    justifyContent: "flex-end",
     marginTop: 2,
   },
   stripe: {

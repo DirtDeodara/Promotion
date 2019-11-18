@@ -9,17 +9,7 @@ function Form(props) {
   return (
     <View style={styles.container}>
     <Text>Student Name</Text>
-      <TextField
-        placeholder="   Student name..."
-        style={{
-          width: 200,
-          height: 46,
-          borderColor: "black",
-          borderWidth: 4,
-          borderRadius: 10,
-          marginBottom: 10
-        }}
-      />
+      <TextField />
       <Text>Birth Date</Text>
       <DatePicker style={{ margin: 10 }}/>
       <Text>Belt Color</Text>
