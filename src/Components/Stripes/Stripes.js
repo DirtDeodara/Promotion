@@ -5,37 +5,45 @@ export default class Stripes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0
+      count: 0,
+      stripeArray: [
+        { filled: false },
+        { filled: false },
+        { filled: false },
+        { filled: false }
+      ]
     };
   }
 
   render() {
     const count = this.state.count;
-    const stripeArray = [];
-    const stripeRenderer = (count) => {
-      if(count > 0 && count < 5) {
-        for(let i = 1; i < count + 1; i++) {
-          stripeArray.push(<View key={i} style={styles.stripe}></View>);
-        }
-      }
-      return stripeArray;
-    }
-    {stripeRenderer(count)}
-    
+    const stripes = this.state.stripeArray.map((stripe, i) => (
+      <View
+        key={i}
+        style={stripe.filled ? styles.filled : styles.stripe}
+      ></View>
+    ));
+
     return (
       <View style={styles.container}>
-        {stripeArray.map(stripe => {
-            return stripe;
-          })}
-        <Button 
-        title=" + "
-        onPress={() => {
-          if(this.state.count < 4){
-            this.setState({count: this.state.count + 1}) 
-          } else {
-            this.setState({count: 0})
-          }
-        }}
+        {stripes}
+        <Button
+          title=" + "
+          onPress={() => {
+            if (this.state.count < 4) {
+              this.setState({ count: this.state.count + 1 });
+              return this.state.stripeArray.forEach((stripe, i) => {
+                if (count === this.state.stripeArray.indexOf(stripe)) {
+                  stripe.filled = true;
+                }
+              });
+            } else {
+              this.setState({ count: 0 });
+              return this.state.stripeArray.forEach((stripe, i) => {
+                stripe.filled = false;
+              });
+            }
+          }}
         />
       </View>
     );
@@ -46,7 +54,7 @@ const styles = StyleSheet.create({
     height: 70,
     flexDirection: "row",
     justifyContent: "flex-end",
-    marginTop: 2,
+    marginTop: 2
   },
   stripe: {
     width: 30,
@@ -54,7 +62,14 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderRadius: 5,
     marginRight: 12,
-    backgroundColor: "black"
+    backgroundColor: "white"
   },
-  
+  filled: {
+    width: 30,
+    borderColor: "black",
+    borderWidth: 4,
+    borderRadius: 5,
+    marginRight: 12,
+    backgroundColor: "black"
+  }
 });
