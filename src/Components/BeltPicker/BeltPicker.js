@@ -32,6 +32,8 @@ export default class BeltPicker extends Component {
         }}
       >
         <Picker
+          accessible={true}
+          accessibilityLabel="choose a belt color from this drop down menu"
           selectedValue={this.state.color}
           style={{
             height: 40

@@ -1,9 +1,10 @@
 import React from "react";
 import TextField from '../TextField/TextField';
-import { View, Button, Text, Platform, StyleSheet } from 'react-native';
+import { View, Button, Text, StyleSheet, TouchableOpacity  } from 'react-native';
 import DatePicker from '../DatePicker/DatePicker'
 import BeltPicker from '../BeltPicker/BeltPicker'
 import Stripes from '../Stripes/Stripes'
+import NavButton from '../NavButton/NavButton'
 
 function Form(props) {
   return (
@@ -16,6 +17,7 @@ function Form(props) {
       <BeltPicker />
       <Text>Stripes</Text>
       <Stripes />
+      <NavButton />
     </View>
   );
 }
@@ -27,6 +29,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column'
   },
+ 
 
 });
 

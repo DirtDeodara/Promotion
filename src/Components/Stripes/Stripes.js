@@ -28,6 +28,8 @@ export default class Stripes extends Component {
       <View style={styles.container}>
         {stripes}
         <Button
+          accessible={true}
+          accessibilityLabel="Tap me to add a stripe"
           title=" + "
           onPress={() => {
             if (this.state.count < 4) {
@@ -39,7 +41,7 @@ export default class Stripes extends Component {
               });
             } else {
               this.setState({ count: 0 });
-              return this.state.stripeArray.forEach((stripe, i) => {
+              return this.state.stripeArray.forEach((stripe) => {
                 stripe.filled = false;
               });
             }
@@ -49,12 +51,14 @@ export default class Stripes extends Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     height: 70,
     flexDirection: "row",
     justifyContent: "flex-end",
-    marginTop: 2
+    marginTop: 2,
+    marginBottom: 20
   },
   stripe: {
     width: 30,

@@ -5,7 +5,9 @@ function TextField(props) {
   return (
     <View style={styles.container}>
       <TextInput
-       style={styles.input}
+        accessible={true}
+        accessibilityLabel="Text input for student's name"
+        style={styles.input}
         placeholder="   Student name..."
         {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
         editable
