@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
 
-function TextField(props) {
+function NavButton(props) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button}>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default TextField;
+export default NavButton;
