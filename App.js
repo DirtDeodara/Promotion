@@ -1,11 +1,18 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Form from './src/Components/Form/Form';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { NativeRouter, Route } from "react-router-native";
+import Form from "./src/Containers/Form/Form";
+import Header from "./src/Components/Header/Header";
+import StudentList from './src/Containers/StudentList/StudentList'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Form />
+      <Header/>
+      <NativeRouter>
+        <Route path="/form" component={Form} />
+        <Route exact path="/" component={StudentList} />
+      </NativeRouter>
     </View>
   );
 }
@@ -13,37 +20,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    flexDirection: 'column'
-  },
-
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column"
+  }
 });
 
-// import React from 'react';
-// import { StyleSheet, Text, View } from 'react-native';
-// import Header from './src/Components/Header/Header';
-
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Header style={styles.header}/>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: 'papayawhip',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-
-//   header: {
-//     position: 'absolute',
-// 	  top: 0,
-//   	left: 0
-//   }
-// });
