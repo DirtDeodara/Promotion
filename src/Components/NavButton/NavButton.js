@@ -1,12 +1,12 @@
 import React from "react";
-import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { useHistory } from "react-router-native";
 
 function NavButton(props) {
+  const history = useHistory();
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
-
-      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {history.push(props.link)}} style={styles.button}/>
     </View>
   );
 }
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 4,
     borderRadius: 40,
+    marginBottom: 10
   }
 });
 
