@@ -1,21 +1,8 @@
 import React from "react";
 import { Picker, View } from "react-native";
+import colors from '../../data/colors'
 
 function BeltPicker({ color, selectColor }) {
-  const colors = [
-    "Yellow/White",
-    "Grey/Black",
-    "Grey",
-    "Grey/White",
-    "White",
-    "White/Yellow",
-    "White/Orange",
-    "White/Green",
-    "Blue",
-    "Purple",
-    "Brown",
-    "Black"
-  ];
   
   return (
     <View
