@@ -11,9 +11,11 @@ export default class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(),
+      dob: new Date(),
+      name: "",
       count: 0,
-      color: "White"
+      color: "White",
+      lastPromotion: ""
     };
   }
 
@@ -29,32 +31,47 @@ export default class Form extends Component {
     this.setState({ color });
   };
 
-  changeDate = date => {
-    this.setState({ date });
+  changeDate = dob => {
+    this.setState({ dob });
   };
+
+  setStipes = count => {
+    this.setState({ count });
+  };
+
+  setName = name => {
+    this.setState({ name });
+  };
+
+  handleSubmit = () => {
+    // this will be for the form  button
+  }
 
   render() {
     return (
       <View style={styles.container}>
         <Text>Student Name</Text>
-        <TextField />
+        <TextField
+          name="name"
+          onChangeText={this.setName}
+          value={this.state.name}
+        />
         <Text>Birth Date</Text>
         <DatePicker
-          date={this.state.date}
+          dob={this.state.dob}
           changeDate={this.changeDate}
           style={{ margin: 10 }}
         />
         <Text>Belt Color</Text>
-        <BeltPicker 
-          color={this.state.color} 
-          selectColor={this.selectColor} 
-          />
+        <BeltPicker color={this.state.color} selectColor={this.selectColor} />
         <Text>Stripes</Text>
         <Stripes
           iterateStripes={this.iterateStripes}
           count={this.state.count}
         />
-        <NavButton link={'/'}/>
+        <View style={styles.button}>
+          <NavButton state={this.state} link={"/"} />
+        </View>
       </View>
     );
   }
@@ -66,5 +83,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column"
+  },
+  button: {
+    marginTop: 70
   }
 });

@@ -10,7 +10,8 @@ export default function App() {
     <View style={styles.container}>
       <Header/>
       <NativeRouter>
-        <Route path="/form" component={Form} />
+        <Route path="/form" component={Form} /> 
+        <Route path="/new" component={Form} />
         <Route exact path="/" component={StudentList} />
       </NativeRouter>
     </View>

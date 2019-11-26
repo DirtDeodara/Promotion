@@ -4,22 +4,27 @@ import { useHistory } from "react-router-native";
 
 function NavButton(props) {
   const history = useHistory();
+  console.log(props.state)
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => {history.push(props.link)}} style={styles.button}/>
+      <TouchableOpacity
+        onPress={() => {
+          history.push(props.link);
+          console.log(props.state);
+        }}
+        style={styles.button}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    
-  },
+  container: {},
   button: {
     width: 80,
     height: 80,
     color: "black",
-    backgroundColor: "skyblue",
+    backgroundColor: "#157DAC",
     borderColor: "black",
     borderWidth: 4,
     borderRadius: 40,

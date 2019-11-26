@@ -5,6 +5,7 @@ function TextField(props) {
   return (
     <View style={styles.container}>
       <TextInput
+        onChangeText={props.onChangeText}
         accessible={true}
         accessibilityLabel="Text input for student's name"
         style={styles.input}

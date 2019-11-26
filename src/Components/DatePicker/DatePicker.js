@@ -1,7 +1,7 @@
 import React from "react";
 import DatePicker from "react-native-datepicker";
 
-function MyDatePicker({ date, changeDate }) {
+function MyDatePicker({ dob, changeDate }) {
   return (
     <>
       <DatePicker
@@ -12,7 +12,7 @@ function MyDatePicker({ date, changeDate }) {
           borderWidth: 3.5,
           borderRadius: 10
         }}
-        date={date}
+        date={dob}
         mode="date"
         placeholder="select date"
         format="YYYY-MM-DD"
