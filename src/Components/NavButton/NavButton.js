@@ -4,13 +4,12 @@ import { useHistory } from "react-router-native";
 
 function NavButton(props) {
   const history = useHistory();
-  console.log(props.state)
+ 
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
           history.push(props.link);
-          console.log(props.state);
         }}
         style={styles.button}
       />

@@ -70,7 +70,7 @@ export default class Form extends Component {
           count={this.state.count}
         />
         <View style={styles.button}>
-          <NavButton state={this.state} link={"/"} />
+          <NavButton state={this.state} link={"/"} /> //TODO why is state being passed here
         </View>
       </View>
     );

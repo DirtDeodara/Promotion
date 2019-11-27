@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+var moment = require('moment');
+// moment().format();
 import {
   View,
   Text,
@@ -18,8 +20,13 @@ export default class StudentList extends Component {
       students: students
     };
   }
+
   render() {
     const listOfStudents = ({ item: student }) => {
+      const then = moment(student.lastPromotionDate);
+      const now = moment();
+      const daysSinceLastPromotion = now.diff(then, 'days');
+
       return (
         <TouchableOpacity
           onPress={() => {
@@ -29,7 +36,7 @@ export default class StudentList extends Component {
           style={styles.item}
         >
           <Text style={styles.name}>{student.name}</Text>
-          <Text style={styles.date}>{student.lastPromotionDate}</Text>
+          <Text style={styles.date}>{`${daysSinceLastPromotion} days ago`}</Text>
         </TouchableOpacity>
       );
     };
@@ -96,6 +103,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    marginBottom: 20,
+    marginBottom: 20
   }
 });
