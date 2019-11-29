@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-var moment = require('moment');
-// moment().format();
+var moment = require("moment");
 import {
   View,
   Text,
@@ -12,6 +11,7 @@ import {
 } from "react-native";
 import students from "../../data/students";
 import NavButton from "../../Components/NavButton/NavButton";
+import { getStudents } from "../../services/studentApi";
 
 export default class StudentList extends Component {
   constructor(props) {
@@ -21,11 +21,29 @@ export default class StudentList extends Component {
     };
   }
 
+  // componentDidMount() {
+  //   this.fetchData();
+  // }
+
+
+  // fetchData = async () => {
+  //   try {
+  //     const response = await fetch('http://localhost:3000/api/v1/students');
+  //     const data = await response.json();
+  //     this.setState({students: data})
+
+  //   }
+  //   catch (err) {
+  //     console.log('Load students failed', err);
+  // }
+
+  // };
+
   render() {
     const listOfStudents = ({ item: student }) => {
-      const then = moment(student.lastPromotionDate);
       const now = moment();
-      const daysSinceLastPromotion = now.diff(then, 'days');
+      const then = moment(student.lastPromotionDate);
+      const daysSinceLastPromotion = now.diff(then, "days");
 
       return (
         <TouchableOpacity
@@ -36,7 +54,9 @@ export default class StudentList extends Component {
           style={styles.item}
         >
           <Text style={styles.name}>{student.name}</Text>
-          <Text style={styles.date}>{`${daysSinceLastPromotion} days ago`}</Text>
+          <Text
+            style={styles.date}
+          >{`${daysSinceLastPromotion} days ago`}</Text>
         </TouchableOpacity>
       );
     };

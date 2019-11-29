@@ -6,6 +6,7 @@ import DatePicker from "../../Components/DatePicker/DatePicker";
 import BeltPicker from "../../Components/BeltPicker/BeltPicker";
 import Stripes from "../../Components/Stripes/Stripes";
 import NavButton from "../../Components/NavButton/NavButton";
+import { addStudent } from "../../services/studentApi";
 
 export default class Form extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ export default class Form extends Component {
       lastPromotion: ""
     };
   }
+
 
   iterateStripes = () => {
     this.setState(state => {
@@ -44,8 +46,14 @@ export default class Form extends Component {
   };
 
   handleSubmit = () => {
-    // this will be for the form  button
-  }
+    console.log('hello???');
+    addStudent({name, dob});
+  };
+
+  // handleSubmit = () => {
+  //   // this will be for the form  button
+  //   // put
+  // }
 
   render() {
     return (
@@ -70,7 +78,7 @@ export default class Form extends Component {
           count={this.state.count}
         />
         <View style={styles.button}>
-          <NavButton state={this.state} link={"/"} /> //TODO why is state being passed here
+          <NavButton handleSubmit={this.handleSubmit} link={"/"} />
         </View>
       </View>
     );
