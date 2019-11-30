@@ -17,27 +17,27 @@ export default class StudentList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      students: students
+      students: []
     };
   }
 
-  // componentDidMount() {
-  //   this.fetchData();
-  // }
+  componentDidMount() {
+    this.fetchData();
+  }
 
 
-  // fetchData = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:3000/api/v1/students');
-  //     const data = await response.json();
-  //     this.setState({students: data})
+  fetchData = async () => {
+    try {
+      const response = await fetch('http://10.0.0.201:3000/api/v1/students');
+      const data = await response.json();
+      this.setState({students: data})
 
-  //   }
-  //   catch (err) {
-  //     console.log('Load students failed', err);
-  // }
+    }
+    catch (err) {
+      console.log('Load students failed', err);
+  }
 
-  // };
+  };
 
   render() {
     const listOfStudents = ({ item: student }) => {
