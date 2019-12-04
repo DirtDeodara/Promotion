@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   FlatList
 } from "react-native";
-import students from "../../data/students";
 import NavButton from "../../Components/NavButton/NavButton";
 import { getStudents } from "../../services/studentApi";
 
@@ -28,7 +27,7 @@ export default class StudentList extends Component {
 
   fetchData = async () => {
     try {
-      const response = await fetch('http://10.0.0.201:3000/api/v1/students');
+      const response = await fetch('http://192.168.1.115:3000/api/v1/students');
       const data = await response.json();
       this.setState({students: data})
 
@@ -83,13 +82,13 @@ export default class StudentList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: 280,
-    height: 410,
+    width: 346,
+    height: 480,
     backgroundColor: "black",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    marginBottom: 20,
+    // marginBottom: 10,
     borderColor: "black",
     borderWidth: 5,
     borderRadius: 10
@@ -109,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     justifyContent: "space-between",
     height: 50,
-    width: 270,
+    width: 340,
     flexDirection: "row",
     backgroundColor: "white",
     borderColor: "black",
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
     marginVertical: 2
   },
   button: {
-    width: 280,
+    width: 346,
     height: 100,
     alignItems: "center",
     justifyContent: "center",

@@ -20,7 +20,6 @@ export default class Form extends Component {
     };
   }
 
-
   iterateStripes = () => {
     this.setState(state => {
       return {
@@ -46,8 +45,16 @@ export default class Form extends Component {
   };
 
   handleSubmit = () => {
-    console.log('hello???');
-    addStudent({name, dob});
+    fetch('http://192.168.1.115:3000/api/v1/students', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: this.state.name,
+        date_of_birth: this.state.dob,
+      }),
+    });
   };
 
   // handleSubmit = () => {

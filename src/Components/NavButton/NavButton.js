@@ -10,8 +10,8 @@ function NavButton(props) {
       <TouchableOpacity
         onPress={() => {
           console.log('navButton was pressed')
-          props.handleSubmit;
-          history.push(props.link);
+          props.handleSubmit && props.handleSubmit()
+          history.push(props.link)
         }}
         style={styles.button}
       />
@@ -22,13 +22,13 @@ function NavButton(props) {
 const styles = StyleSheet.create({
   container: {},
   button: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     color: "black",
     backgroundColor: "#157DAC",
     borderColor: "black",
     borderWidth: 4,
-    borderRadius: 40,
+    borderRadius: 35,
     marginBottom: 10
   }
 });
