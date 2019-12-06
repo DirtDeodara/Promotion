@@ -3,10 +3,7 @@ import { View, Button, StyleSheet } from "react-native";
 
 function Stripes({ count, iterateStripes }) {
   const stripes = [...Array(4)].map((_, i) => (
-    <View 
-      key={i} 
-      style={count > i ? styles.filled : styles.stripe}>
-      </View>
+    <View key={i} style={count > i ? styles.filled : styles.stripe}></View>
   ));
 
   return (

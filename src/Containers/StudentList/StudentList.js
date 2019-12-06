@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 var moment = require("moment");
+import NavButton from "../../Components/NavButton/NavButton";
+import colors from '../../data/colors';
 import {
   View,
   Text,
@@ -9,8 +11,11 @@ import {
   TouchableOpacity,
   FlatList
 } from "react-native";
-import NavButton from "../../Components/NavButton/NavButton";
-import { getStudents } from "../../services/studentApi";
+// import { getStudents } from "../../services/studentApi";
+// import Stripes from '../../Components/Stripes/Stripes';
+
+const homeIpAddr = `10.0.0.201`;
+const schoolIpAddr = `192.168.1.115`
 
 export default class StudentList extends Component {
   constructor(props) {
@@ -24,35 +29,39 @@ export default class StudentList extends Component {
     this.fetchData();
   }
 
-
   fetchData = async () => {
     try {
-      const response = await fetch('http://192.168.1.115:3000/api/v1/students');
+      const response = await fetch(`http://${schoolIpAddr}:3000/api/v1/students`);
       const data = await response.json();
       this.setState({students: data})
 
     }
     catch (err) {
       console.log('Load students failed', err);
-  }
+    }
 
   };
 
   render() {
+    
+
     const listOfStudents = ({ item: student }) => {
       const now = moment();
       const then = moment(student.lastPromotionDate);
       const daysSinceLastPromotion = now.diff(then, "days");
+ 
+      const beltColor = colors[Math.floor(Math.random() * 12)]
 
       return (
         <TouchableOpacity
           onPress={() => {
-            this.props.history.push("/form");
+            this.props.history.push("/studentDetail");
           }}
           style={styles.button}
           style={styles.item}
         >
           <Text style={styles.name}>{student.name}</Text>
+          <Text style={styles.name} style={styles.color}>{beltColor}</Text>
           <Text
             style={styles.date}
           >{`${daysSinceLastPromotion} days ago`}</Text>
@@ -64,7 +73,7 @@ export default class StudentList extends Component {
       <SafeAreaView>
         <View style={styles.container}>
           <View style={styles.headers}>
-            <Text style={styles.header}>Student Name | Last Promotion</Text>
+            <Text style={styles.header}>Student Name    |       Belt       |       Last Promotion</Text>
           </View>
           <FlatList
             keyExtractor={(_, i) => i.toString()}
@@ -107,7 +116,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 30,
     justifyContent: "space-between",
-    height: 50,
+    height: 40,
     width: 340,
     flexDirection: "row",
     backgroundColor: "white",
