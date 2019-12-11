@@ -9,7 +9,7 @@ import StudentListItem from './src/Containers/StudentListItem/StudentListItem';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Header/>
+      {/* <Header/> */}
       <NativeRouter>
         <Route path="/form" component={Form} /> 
         <Route path="/studentDetail" component={StudentListItem} /> 
