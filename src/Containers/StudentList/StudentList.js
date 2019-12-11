@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-var moment = require("moment");
+const moment = require("moment");
 import NavButton from "../../Components/NavButton/NavButton";
 import colors from '../../data/colors';
 import {
@@ -11,9 +11,6 @@ import {
   TouchableOpacity,
   FlatList
 } from "react-native";
-// import { getStudents } from "../../services/studentApi";
-// import Stripes from '../../Components/Stripes/Stripes';
-
 const homeIpAddr = `10.0.0.201`;
 const schoolIpAddr = `192.168.1.115`
 
@@ -31,7 +28,7 @@ export default class StudentList extends Component {
 
   fetchData = async () => {
     try {
-      const response = await fetch(`http://${schoolIpAddr}:3000/api/v1/students`);
+      const response = await fetch(`http://${homeIpAddr}:3000/api/v1/students`);
       const data = await response.json();
       this.setState({students: data})
 
@@ -39,12 +36,10 @@ export default class StudentList extends Component {
     catch (err) {
       console.log('Load students failed', err);
     }
-
   };
 
   render() {
     
-
     const listOfStudents = ({ item: student }) => {
       const now = moment();
       const then = moment(student.lastPromotionDate);
@@ -97,10 +92,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    // marginBottom: 10,
     borderColor: "black",
     borderWidth: 5,
-    borderRadius: 10
+    borderRadius: 10,
+    marginTop: 40
   },
   headers: {
     flexDirection: "row",

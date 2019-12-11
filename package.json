@@ -19,7 +19,7 @@
     "@emotion/core": "^10.0.22",
     "@emotion/native": "^10.0.22",
     "@react-native-community/datetimepicker": "^2.1.0",
-    "dotenv": "^8.1.0",
+    "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.7.0",
     "expo": "^35.0.0",
     "moment": "^2.24.0",
