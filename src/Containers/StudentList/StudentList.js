@@ -28,7 +28,7 @@ export default class StudentList extends Component {
 
   fetchData = async () => {
     try {
-      const response = await fetch(`http://${homeIpAddr}:3000/api/v1/students`);
+      const response = await fetch(`http://${schoolIpAddr}:3000/api/v1/students`);
       const data = await response.json();
       this.setState({students: data})
 
@@ -37,21 +37,23 @@ export default class StudentList extends Component {
       console.log('Load students failed', err);
     }
   };
+  
 
   render() {
-    
     const listOfStudents = ({ item: student }) => {
       const now = moment();
       const then = moment(student.lastPromotionDate);
       const daysSinceLastPromotion = now.diff(then, "days");
+      // console.log(student);
  
       const beltColor = colors[Math.floor(Math.random() * 12)]
 
       return (
         <TouchableOpacity
           onPress={() => {
-            this.props.history.push("/studentDetail");
+            this.props.history.push(`/studentDetail/${student.id}`);
           }}
+          student={student}
           style={styles.button}
           style={styles.item}
         >
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 5,
     borderRadius: 10,
-    marginTop: 40
+    marginTop: 60
   },
   headers: {
     flexDirection: "row",

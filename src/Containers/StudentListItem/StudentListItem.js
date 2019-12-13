@@ -13,16 +13,15 @@ export default class StudentListItem extends Component {
       promotion: {}
     };
   }
-
   componentDidMount() {
     this.fetchStudent();
     this.fetchPromotion();
   }
 
-  fetchStudent = async () => {
+  fetchStudent = async (id) => {
     try {
       const response = await fetch(
-        `http://${homeIpAddr}:3000/api/v1/students/1`
+        `http://${schoolIpAddr}:3000/api/v1/students/${this.props.match.params.id}`
       );
       const data = await response.json();
       this.setState({ student: data });
@@ -31,10 +30,10 @@ export default class StudentListItem extends Component {
     }
   };
 
-  fetchPromotion = async () => {
+  fetchPromotion = async (studentId) => {
     try {
       const response = await fetch(
-        `http://${homeIpAddr}:3000/api/v1/promotions/1`
+        `http://${schoolIpAddr}:3000/api/v1/promotions/${this.props.match.params.id}`
       );
       const data = await response.json();
       this.setState({ promotion: data });
@@ -88,7 +87,8 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   nameText: {
-    fontSize: 25
+    fontSize: 25,
+    marginBottom: 20
   },
   text: {
     fontSize: 20
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 28,
     borderColor: "black",
-    borderWidth: 4,
+    borderWidth: 1,
     marginRight: 12,
     backgroundColor: "white"
   },

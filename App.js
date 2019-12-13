@@ -12,7 +12,7 @@ export default function App() {
       {/* <Header/> */}
       <NativeRouter>
         <Route path="/form" component={Form} /> 
-        <Route path="/studentDetail" component={StudentListItem} /> 
+        <Route path="/studentDetail/:id" component={StudentListItem} /> 
         <Route path="/new" component={Form} />
         <Route exact path="/" component={StudentList} />
       </NativeRouter>

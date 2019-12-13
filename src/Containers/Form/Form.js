@@ -6,6 +6,8 @@ import DatePicker from "../../Components/DatePicker/DatePicker";
 import BeltPicker from "../../Components/BeltPicker/BeltPicker";
 import Stripes from "../../Components/Stripes/Stripes";
 import NavButton from "../../Components/NavButton/NavButton";
+const homeIpAddr = `10.0.0.201`;
+const schoolIpAddr = `192.168.1.115`;
 import { addStudent } from "../../services/studentApi";
 
 export default class Form extends Component {
@@ -14,16 +16,17 @@ export default class Form extends Component {
     this.state = {
       dob: new Date(),
       name: "",
-      count: 0,
+      stipes: 0,
       color: "White",
-      lastPromotion: ""
+      lastPromotion: "",
+      gym: ""
     };
   }
 
   iterateStripes = () => {
     this.setState(state => {
       return {
-        count: state.count < 4 ? state.count + 1 : 0
+        stripes: state.stripes < 4 ? state.stripes + 1 : 0
       };
     });
   };
@@ -36,8 +39,8 @@ export default class Form extends Component {
     this.setState({ dob });
   };
 
-  setStipes = count => {
-    this.setState({ count });
+  setStipes = stripes => {
+    this.setState({ stripes });
   };
 
   setName = name => {
@@ -45,7 +48,7 @@ export default class Form extends Component {
   };
 
   handleSubmit = () => {
-    fetch('http://192.168.1.115:3000/api/v1/students', {
+    fetch(`http://${schoolIpAddr}:3000/api/v1/students`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -53,6 +56,9 @@ export default class Form extends Component {
       body: JSON.stringify({
         name: this.state.name,
         date_of_birth: this.state.dob,
+        gym: "Straight Blast Gym",
+        stripes: this.state.stripes
+
       }),
     });
   };
@@ -82,7 +88,7 @@ export default class Form extends Component {
         <Text>Stripes</Text>
         <Stripes
           iterateStripes={this.iterateStripes}
-          count={this.state.count}
+          count={this.state.stripes}
         />
         <View style={styles.button}>
           <NavButton handleSubmit={this.handleSubmit} link={"/"} />
