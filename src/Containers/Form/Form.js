@@ -63,11 +63,6 @@ export default class Form extends Component {
     });
   };
 
-  // handleSubmit = () => {
-  //   // this will be for the form  button
-  //   // put
-  // }
-
   render() {
     return (
       <View style={styles.container}>

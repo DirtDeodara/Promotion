@@ -37,15 +37,12 @@ export default class StudentList extends Component {
       console.log('Load students failed', err);
     }
   };
-  
 
   render() {
     const listOfStudents = ({ item: student }) => {
       const now = moment();
       const then = moment(student.lastPromotionDate);
       const daysSinceLastPromotion = now.diff(then, "days");
-      // console.log(student);
- 
       const beltColor = colors[Math.floor(Math.random() * 12)]
 
       return (
