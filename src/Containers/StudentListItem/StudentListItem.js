@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import NavButton from "../../Components/NavButton/NavButton";
 const moment = require("moment");
 const homeIpAddr = `10.0.0.201`;
 const schoolIpAddr = `192.168.1.115`;
-const placeHolderImage = require("../../../assets/901628_3482411075020_339201519_o.jpg");
+const placeHolderImage = require("../../../assets/a.jpg");
 
 export default class StudentListItem extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class StudentListItem extends Component {
     this.fetchPromotion();
   }
 
-  fetchStudent = async (id) => {
+  fetchStudent = async id => {
     try {
       const response = await fetch(
         `http://${schoolIpAddr}:3000/api/v1/students/${this.props.match.params.id}`
@@ -30,7 +31,7 @@ export default class StudentListItem extends Component {
     }
   };
 
-  fetchPromotion = async (studentId) => {
+  fetchPromotion = async studentId => {
     try {
       const response = await fetch(
         `http://${schoolIpAddr}:3000/api/v1/promotions/${this.props.match.params.id}`
@@ -48,27 +49,34 @@ export default class StudentListItem extends Component {
     const age = now.diff(then, "years");
     const color = String(this.state.promotion.belt_color).toLowerCase();
     const numOfStripes = this.state.promotion.stripes;
+    const coachWhoPromoted = this.state.promotion.coach_who_promoted;
+    const studentName = this.state.student.name;
 
     const stripes = [...Array(4)].map((_, i) => (
       <View
         key={i}
-        style={numOfStripes > i ? styles.filled : styles.stripe}
+        style={ numOfStripes > i ? styles.filled : { ...styles.stripe, backgroundColor: color } }
       ></View>
-    ));
+    )).reverse();
 
     return (
-      <View style={{ ...styles.container }}>
-        <Text style={styles.nameText}>{this.state.student.name}</Text>
-        <Image style={styles.image} source={placeHolderImage} />
-        <View style={{ ...styles.belt, backgroundColor: color }}>
-          {stripes}
+      <View>
+        <View style={{ ...styles.container }}>
+          <Text style={styles.nameText}>{studentName}</Text>
+          <Image style={styles.image} source={placeHolderImage} />
+          <View style={{ ...styles.belt, backgroundColor: color }}>
+            {stripes}
+          </View>
+          {/* <Text style={styles.text}>{this.state.promotion.stripes} stripe {this.state.promotion.belt_color} belt</Text> */}
+          <Text style={styles.text}>{age} years old</Text>
+          <Text style={styles.text}>Days since last promotion</Text>
+          <Text style={styles.text}>
+            Last promoted by {coachWhoPromoted}
+          </Text>
         </View>
-        {/* <Text style={styles.text}>{this.state.promotion.stripes} stripe {this.state.promotion.belt_color} belt</Text> */}
-        <Text style={styles.text}>{age} years old</Text>
-        <Text style={styles.text}>Days since last promotion</Text>
-        <Text style={styles.text}>
-          Last promoted by {this.state.promotion.coach_who_promoted}
-        </Text>
+        <View style={styles.button}>
+          <NavButton link={"/"} />
+        </View>
       </View>
     );
   }
@@ -84,7 +92,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderColor: "black",
     borderWidth: 5,
-    borderRadius: 10
+    borderRadius: 10,
+    marginTop: 20
   },
   nameText: {
     fontSize: 25,
@@ -102,11 +111,11 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 346,
-    height: 100,
+    height: 80,
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "column",
-    marginBottom: 20
+    marginTop: 20
   },
   belt: {
     flexDirection: "row",
@@ -120,10 +129,9 @@ const styles = StyleSheet.create({
   stripe: {
     width: 10,
     height: 28,
-    borderColor: "black",
     borderWidth: 1,
     marginRight: 12,
-    backgroundColor: "white"
+    borderColor: "black"
   },
   filled: {
     width: 10,
