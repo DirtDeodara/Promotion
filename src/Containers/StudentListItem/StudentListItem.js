@@ -37,6 +37,7 @@ export default class StudentListItem extends Component {
         `http://${schoolIpAddr}:3000/api/v1/promotions/${this.props.match.params.id}`
       );
       const data = await response.json();
+      console.log('XXXXXXXXXX', data, 'XXXXXXXXXXX');
       this.setState({ promotion: data });
     } catch (err) {
       console.log("The desired promotion failed to load", err);
@@ -47,6 +48,8 @@ export default class StudentListItem extends Component {
     const now = moment();
     const then = moment(this.state.student.date_of_birth);
     const age = now.diff(then, "years");
+    const lastPromotionDate = moment(this.state.promotion.createdAt);
+    const daysSinceLastPromotion = now.diff(lastPromotionDate, "days");
     const color = String(this.state.promotion.belt_color).toLowerCase();
     const numOfStripes = this.state.promotion.stripes;
     const coachWhoPromoted = this.state.promotion.coach_who_promoted;
@@ -69,7 +72,7 @@ export default class StudentListItem extends Component {
           </View>
           {/* <Text style={styles.text}>{this.state.promotion.stripes} stripe {this.state.promotion.belt_color} belt</Text> */}
           <Text style={styles.text}>{age} years old</Text>
-          <Text style={styles.text}>Days since last promotion</Text>
+          <Text style={styles.text}>{daysSinceLastPromotion} days since last promotion</Text>
           <Text style={styles.text}>
             Last promoted by {coachWhoPromoted}
           </Text>
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 20
+    marginTop: 20,
   },
   belt: {
     flexDirection: "row",
