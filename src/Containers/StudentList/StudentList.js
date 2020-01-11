@@ -41,9 +41,12 @@ export default class StudentList extends Component {
   render() {
     const listOfStudents = ({ item: student }) => {
       const now = moment();
-      const then = moment(student.lastPromotionDate);
+      let then;
+      if(student.promotions) {
+        then = moment(student.promotions.createdAt);
+      }
       const daysSinceLastPromotion = now.diff(then, "days");
-      const beltColor = colors[Math.floor(Math.random() * 12)]
+      // console.log(this.state.students[0])
 
       return (
         <TouchableOpacity
@@ -55,7 +58,7 @@ export default class StudentList extends Component {
           style={styles.item}
         >
           <Text style={styles.name}>{student.name}</Text>
-          <Text style={styles.name} style={styles.color}>{beltColor}</Text>
+          <Text style={styles.name} style={styles.color}>{student.beltColor}</Text>
           <Text
             style={styles.date}
           >{`${daysSinceLastPromotion} days ago`}</Text>
