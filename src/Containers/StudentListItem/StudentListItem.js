@@ -4,7 +4,7 @@ import NavButton from "../../Components/NavButton/NavButton";
 const moment = require("moment");
 const homeIpAddr = `10.0.0.201`;
 const schoolIpAddr = `192.168.1.115`;
-const placeHolderImage = require("../../../assets/a.jpg");
+const placeHolderImage = require("../../../assets/a.jpg"); //TODO this is just a placeholer!!
 
 export default class StudentListItem extends Component {
   constructor(props) {
@@ -37,13 +37,12 @@ export default class StudentListItem extends Component {
         `http://${schoolIpAddr}:3000/api/v1/promotions/${this.props.match.params.id}`
       );
       const data = await response.json();
-      console.log('XXXXXXXXXX', data, 'XXXXXXXXXXX');
+      // console.log('XXXXXXXXXX', data, 'XXXXXXXXXXX');
       this.setState({ promotion: data });
     } catch (err) {
       console.log("The desired promotion failed to load", err);
     }
   };
-
   render() {
     const now = moment();
     const then = moment(this.state.student.date_of_birth);
