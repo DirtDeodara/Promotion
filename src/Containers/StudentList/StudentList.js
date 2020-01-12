@@ -91,9 +91,6 @@ export default class StudentList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    transform: [
-       { translateX: 0 }
-    ],
     width: 346,
     height: 460,
     backgroundColor: "black",
@@ -103,7 +100,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 5,
     borderRadius: 10,
-    // marginTop: 60
+    // top: 20
   },
   headers: {
     flexDirection: "row",
@@ -134,13 +131,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    marginBottom: 20
-  },
-
-  // menu: {
-  //   position: "absolute",
-  //   flex: 1,
-  //   flexDirection: "column",
-  //   alignItems: "flex-end"
-  // }
+    // top: 10
+  }
 });

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import NavButton from "../../Components/NavButton/NavButton";
 const moment = require("moment");
+import Burger from "../../Components/Burger/Burger";
+import NavMenu from "../../Components/NavMenu/NavMenu";
 const homeIpAddr = `10.0.0.201`;
 const schoolIpAddr = `192.168.1.115`;
 const placeHolderImage = require("../../../assets/a.jpg"); //TODO this is just a placeholer!!
@@ -22,7 +24,7 @@ export default class StudentListItem extends Component {
   fetchStudent = async id => {
     try {
       const response = await fetch(
-        `http://${schoolIpAddr}:3000/api/v1/students/${this.props.match.params.id}`
+        `http://${homeIpAddr}:3000/api/v1/students/${this.props.match.params.id}`
       );
       const data = await response.json();
       this.setState({ student: data });
@@ -34,7 +36,7 @@ export default class StudentListItem extends Component {
   fetchPromotion = async studentId => {
     try {
       const response = await fetch(
-        `http://${schoolIpAddr}:3000/api/v1/promotions/${this.props.match.params.id}`
+        `http://${homeIpAddr}:3000/api/v1/promotions/${this.props.match.params.id}`
       );
       const data = await response.json();
       // console.log('XXXXXXXXXX', data, 'XXXXXXXXXXX');
@@ -63,6 +65,7 @@ export default class StudentListItem extends Component {
 
     return (
       <View>
+        <Burger />
         <View style={{ ...styles.container }}>
           <Text style={styles.nameText}>{studentName}</Text>
           <Image style={styles.image} source={placeHolderImage} />
@@ -79,6 +82,7 @@ export default class StudentListItem extends Component {
         <View style={styles.button}>
           <NavButton link={"/"} />
         </View>
+      <NavMenu />
       </View>
     );
   }
@@ -87,7 +91,7 @@ export default class StudentListItem extends Component {
 const styles = StyleSheet.create({
   container: {
     width: 346,
-    height: 480,
+    height: 460,
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
@@ -95,7 +99,6 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 5,
     borderRadius: 10,
-    marginTop: 20
   },
   nameText: {
     fontSize: 25,
@@ -117,7 +120,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 20,
+    marginTop: 10,
+    marginBottom: 10
   },
   belt: {
     flexDirection: "row",
