@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 const moment = require("moment");
 import NavButton from "../../Components/NavButton/NavButton";
-import colors from '../../data/colors';
+import Burger from "../../Components/Burger/Burger";
+import NavMenu from "../../Components/NavMenu/NavMenu";
 import {
   View,
   Text,
@@ -28,7 +29,7 @@ export default class StudentList extends Component {
 
   fetchData = async () => {
     try {
-      const response = await fetch(`http://${schoolIpAddr}:3000/api/v1/students`);
+      const response = await fetch(`http://${homeIpAddr}:3000/api/v1/students`);
       const data = await response.json();
       this.setState({students: data})
 
@@ -68,6 +69,7 @@ export default class StudentList extends Component {
 
     return (
       <SafeAreaView>
+        <Burger />
         <View style={styles.container}>
           <View style={styles.headers}>
             <Text style={styles.header}>Student Name    |       Belt       |       Last Promotion</Text>
@@ -81,6 +83,7 @@ export default class StudentList extends Component {
         <View style={styles.button}>
           <NavButton link={"/form"} />
         </View>
+        <NavMenu style={styles.menu}/>
       </SafeAreaView>
     );
   }
@@ -88,8 +91,11 @@ export default class StudentList extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    transform: [
+       { translateX: 0 }
+    ],
     width: 346,
-    height: 480,
+    height: 460,
     backgroundColor: "black",
     alignItems: "center",
     justifyContent: "center",
@@ -97,7 +103,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 5,
     borderRadius: 10,
-    marginTop: 60
+    // marginTop: 60
   },
   headers: {
     flexDirection: "row",
@@ -129,5 +135,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "column",
     marginBottom: 20
-  }
+  },
+
+  // menu: {
+  //   position: "absolute",
+  //   flex: 1,
+  //   flexDirection: "column",
+  //   alignItems: "flex-end"
+  // }
 });

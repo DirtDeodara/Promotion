@@ -17,9 +17,11 @@ const styles = StyleSheet.create({
     marginTop: 50,
     flexDirection: "column",
     justifyContent: "space-around",
+    alignItems: "flex-end",
     height: 25,
     marginBottom: 10,
-    left: 20
+    right: 15,
+    borderWidth: 1,
   },
   text: {
     fontSize: 50,

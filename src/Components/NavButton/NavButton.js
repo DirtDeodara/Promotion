@@ -9,7 +9,6 @@ function NavButton(props) {
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          console.log('navButton was pressed')
           props.handleSubmit && props.handleSubmit()
           history.push(props.link)
         }}
