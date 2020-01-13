@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import NavButton from "../../Components/NavButton/NavButton";
 const moment = require("moment");
-import Burger from "../../Components/Burger/Burger";
-import NavMenu from "../../Components/NavMenu/NavMenu";
 const homeIpAddr = `10.0.0.201`;
 const schoolIpAddr = `192.168.1.115`;
 const placeHolderImage = require("../../../assets/a.jpg"); //TODO this is just a placeholer!!
@@ -24,7 +22,7 @@ export default class StudentListItem extends Component {
   fetchStudent = async id => {
     try {
       const response = await fetch(
-        `http://${homeIpAddr}:3000/api/v1/students/${this.props.match.params.id}`
+        `http://${schoolIpAddr}:3000/api/v1/students/${this.props.match.params.id}`
       );
       const data = await response.json();
       this.setState({ student: data });
@@ -36,7 +34,7 @@ export default class StudentListItem extends Component {
   fetchPromotion = async studentId => {
     try {
       const response = await fetch(
-        `http://${homeIpAddr}:3000/api/v1/promotions/${this.props.match.params.id}`
+        `http://${schoolIpAddr}:3000/api/v1/promotions/${this.props.match.params.id}`
       );
       const data = await response.json();
       // console.log('XXXXXXXXXX', data, 'XXXXXXXXXXX');
@@ -65,7 +63,6 @@ export default class StudentListItem extends Component {
 
     return (
       <View>
-        <Burger />
         <View style={{ ...styles.container }}>
           <Text style={styles.nameText}>{studentName}</Text>
           <Image style={styles.image} source={placeHolderImage} />
@@ -82,7 +79,7 @@ export default class StudentListItem extends Component {
         <View style={styles.button}>
           <NavButton link={"/"} />
         </View>
-      <NavMenu />
+      {/* <NavMenu /> */}
       </View>
     );
   }

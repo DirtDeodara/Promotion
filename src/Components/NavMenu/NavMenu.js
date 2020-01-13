@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const NavMenu = (handleDrawer) => {
-  const [position, setPosition] = useState({ isOpen: false });
+const NavMenu = ({ handleTouch, position }) => {
 
-  const handleTouch = () => {
-    setPosition({ isOpen: !position.isOpen })
-    console.log(position)
-  }
   return (
-    <View style={{ ...styles.container,
-      transform: [
-        { translateX: position.isOpen ? 320 : 155 },
-        { translateY: 12 }
-      ]
-       }} >
-      <TouchableOpacity style={styles.linkContainer} onPress={() => handleTouch()}>
+    <TouchableOpacity
+      onPress={() => handleTouch()}
+      style={{
+        ...styles.container,
+        borderWidth: 3,
+        transform: [{ 
+          translateX: position.isOpen ? 85 : 280,
+        }]
+      }}
+    >
+      <TouchableOpacity
+        style={{ ...styles.container, flexDirection: "column", top: 60 }}
+        onPress={() => handleTouch()}
+      >
         <TouchableOpacity>
           <Text style={styles.text}>Student List</Text>
         </TouchableOpacity>
@@ -24,60 +26,44 @@ const NavMenu = (handleDrawer) => {
         </TouchableOpacity>
         <TouchableOpacity>
           <Text style={styles.text}>Student List</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.text}>Add Student</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.text}>Student List</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.text}>Add Student</Text>
         </TouchableOpacity>
       </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    // flex: 1,
     height: 650,
     width: 200,
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
-    borderWidth: 2,
     backgroundColor: "white",
-    opacity: .8,
-   
-  },
-  linkContainer: {
-    flex: 1,
-    position: "absolute",
-    // flex: 1,
-    height: 650,
-    width: 200,
-    flexDirection: "column",
-    alignItems: "center",
-    borderWidth: 2,
-    backgroundColor: "white",
-    opacity: .8,
-    top: 60,
-    // right: 20,
-    // justifyContent: "space-evenly",
-    // alignItems: "center",
+    opacity: 0.8,
+    marginBottom: 20,
   },
   text: {
     width: 200,
     color: "red",
     fontSize: 25,
     marginTop: 15,
-    borderWidth: 1,
     paddingLeft: 30,
     height: 40
+  },
+  tab: {
+    backgroundColor: "white",
+    height: 50,
+    width: 50,
+    borderTopWidth: 3,
+    borderBottomWidth: 3,
+    borderLeftWidth: 3,
+    borderRightWidth: 0,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    right: 50,
+    bottom: 300
   }
 });
-
 
 export default NavMenu;
