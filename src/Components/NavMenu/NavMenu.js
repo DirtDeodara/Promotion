@@ -1,7 +1,21 @@
 import React from "react";
+import { withRouter } from 'react-router-native';
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import colors from '../../data/colors';
 
-const NavMenu = ({ handleTouch, position }) => {
+const NavMenu = ({ handleTouch, position, history }) => {
+ 
+
+  const listOfLinks = colors.map((color, i) => {
+    return (
+      <TouchableOpacity key={i} onPress={() => {
+        history.push(`/studentList/${color}`);
+      }}>
+        <Text style={styles.link}>{`${color} belts`}</Text>
+      </TouchableOpacity>
+    )
+  });
 
   return (
     <TouchableOpacity
@@ -13,21 +27,15 @@ const NavMenu = ({ handleTouch, position }) => {
           translateX: position.isOpen ? 85 : 280,
         }]
       }}
-    >
-      <TouchableOpacity
-        style={{ ...styles.container, flexDirection: "column", top: 60 }}
-        onPress={() => handleTouch()}
       >
-        <TouchableOpacity>
-          <Text style={styles.text}>Student List</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.text}>Add Student</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.text}>Student List</Text>
-        </TouchableOpacity>
+      <AntDesign name="close" size={45} style={{ paddingLeft: 110 }}/>
+      <TouchableOpacity>
+        <Text style={styles.link}>New Student Form</Text>
       </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.link}>All Students</Text>
+      </TouchableOpacity>
+      {listOfLinks}
     </TouchableOpacity>
   );
 };
@@ -37,19 +45,22 @@ const styles = StyleSheet.create({
     position: "absolute",
     height: 650,
     width: 200,
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
+    justifyContent: "space-evenly",
     backgroundColor: "white",
-    opacity: 0.8,
+    // opacity: 1,
     marginBottom: 20,
+    paddingTop: 24,
+    paddingBottom: 30
   },
-  text: {
+  link: {
     width: 200,
-    color: "red",
-    fontSize: 25,
-    marginTop: 15,
-    paddingLeft: 30,
-    height: 40
+    color: "black",
+    fontSize: 18,
+    paddingTop: 5,
+    paddingLeft: 25,
+    height: 35
   },
   tab: {
     backgroundColor: "white",
@@ -66,4 +77,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default NavMenu;
+export default withRouter(NavMenu);

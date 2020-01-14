@@ -25,9 +25,20 @@ export default class StudentList extends Component {
     this.fetchAllStudents();
   }
 
+  componentDidUpdate(previousProps) {
+    if(previousProps.match.params.color !== this.props.match.params.color) {
+      this.fetchAllStudents();
+    }
+  }
+
   fetchAllStudents = async () => {
     try {
-      const response = await fetch(`http://${schoolIpAddr}:3000/api/v1/students`);
+      const url = this.props.match.params.color 
+      ? 
+      `http://${schoolIpAddr}:3000/api/v1/students/color/${this.props.match.params.color.toLowerCase()}` 
+      :
+      `http://${schoolIpAddr}:3000/api/v1/students`;
+      const response = await fetch(url);
       const data = await response.json();
       this.setState({students: data})
 
@@ -79,7 +90,6 @@ export default class StudentList extends Component {
         <View style={styles.button}>
           <NavButton link={"/form"} />
         </View>
-        {/* <NavMenu style={styles.menu}/> */}
       </SafeAreaView>
     );
   }
@@ -126,12 +136,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-  },
-
-  // menu: {
-  //   position: "absolute",
-  //   flex: 1,
-  //   flexDirection: "column",
-  //   alignItems: "flex-end"
-  // }
+  }
 });

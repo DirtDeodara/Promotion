@@ -23,6 +23,7 @@ export default function App() {
         <Route path="/form" component={Form} />
         <Route path="/studentDetail/:id" component={StudentListItem} />
         <Route path="/new" component={Form} />
+        <Route path="/studentList/:color" component={StudentList} />
         <Route exact path="/" component={StudentList} />
         <NavMenu handleTouch={handleTouch} position={position}/>
       </NativeRouter>
