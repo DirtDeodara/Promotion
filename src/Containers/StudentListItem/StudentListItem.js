@@ -19,9 +19,9 @@ export default class StudentListItem extends Component {
     this.fetchPromotion();
   }
 
-  fetchStudent = async id => {
+  fetchStudent = async () => { 
     try {
-      const response = await fetch(
+      const response = await fetch( 
         `http://${schoolIpAddr}:3000/api/v1/students/${this.props.match.params.id}`
       );
       const data = await response.json();
@@ -31,13 +31,12 @@ export default class StudentListItem extends Component {
     }
   };
 
-  fetchPromotion = async studentId => {
+  fetchPromotion = async () => { 
     try {
       const response = await fetch(
         `http://${schoolIpAddr}:3000/api/v1/promotions/${this.props.match.params.id}`
       );
       const data = await response.json();
-      // console.log('XXXXXXXXXX', data, 'XXXXXXXXXXX');
       this.setState({ promotion: data });
     } catch (err) {
       console.log("The desired promotion failed to load", err);
@@ -69,7 +68,6 @@ export default class StudentListItem extends Component {
           <View style={{ ...styles.belt, backgroundColor: color }}>
             {stripes}
           </View>
-          {/* <Text style={styles.text}>{this.state.promotion.stripes} stripe {this.state.promotion.belt_color} belt</Text> */}
           <Text style={styles.text}>{age} years old</Text>
           <Text style={styles.text}>{daysSinceLastPromotion} days since last promotion</Text>
           <Text style={styles.text}>
@@ -79,7 +77,6 @@ export default class StudentListItem extends Component {
         <View style={styles.button}>
           <NavButton link={"/"} />
         </View>
-      {/* <NavMenu /> */}
       </View>
     );
   }

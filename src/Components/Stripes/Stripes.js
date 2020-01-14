@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
     height: 70,
     flexDirection: "row",
     justifyContent: "flex-end",
-    marginTop: 2,
-    marginBottom: 20
+    marginTop: 2
   },
   stripe: {
     width: 30,

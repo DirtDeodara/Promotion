@@ -22,10 +22,10 @@ export default class StudentList extends Component {
   }
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchAllStudents();
   }
 
-  fetchData = async () => {
+  fetchAllStudents = async () => {
     try {
       const response = await fetch(`http://${schoolIpAddr}:3000/api/v1/students`);
       const data = await response.json();
@@ -45,7 +45,6 @@ export default class StudentList extends Component {
         then = moment(student.promotions.createdAt);
       }
       const daysSinceLastPromotion = now.diff(then, "days");
-      // console.log(this.state.students[0])
 
       return (
         <TouchableOpacity
@@ -57,7 +56,7 @@ export default class StudentList extends Component {
           style={styles.item}
         >
           <Text style={styles.name}>{student.name}</Text>
-          <Text style={styles.name} style={styles.color}>{student.beltColor}</Text>
+          <Text style={styles.name} style={styles.color}>{student.beltColor}</Text> 
           <Text
             style={styles.date}
           >{`${daysSinceLastPromotion} days ago`}</Text>

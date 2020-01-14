@@ -56,37 +56,38 @@ export default class Form extends Component {
       body: JSON.stringify({
         name: this.state.name,
         date_of_birth: this.state.dob,
-        gym: "Straight Blast Gym",
-        stripes: this.state.stripes
-
+        gym: "Straight Blast Gym"
       }),
     });
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Student Name</Text>
-        <TextField
-          name="name"
-          onChangeText={this.setName}
-          value={this.state.name}
-        />
-        <Text>Birth Date</Text>
-        <DatePicker
-          dob={this.state.dob}
-          changeDate={this.changeDate}
-          style={{ margin: 10 }}
-        />
-        <Text>Belt Color</Text>
-        <BeltPicker color={this.state.color} selectColor={this.selectColor} />
-        <Text>Stripes</Text>
-        <Stripes
-          iterateStripes={this.iterateStripes}
-          count={this.state.stripes}
-        />
-        <View style={styles.button}>
+      <View>
+        <View style={styles.container}>
+          <Text>Student Name</Text>
+          <TextField
+            name="name"
+            onChangeText={this.setName}
+            value={this.state.name}
+          />
+          <Text>Birth Date</Text>
+          <DatePicker
+            dob={this.state.dob}
+            changeDate={this.changeDate}
+            style={{ margin: 10 }}
+          />
+          <Text>Belt Color</Text>
+          <BeltPicker color={this.state.color} selectColor={this.selectColor} />
+          <Text>Stripes</Text>
+          <Stripes
+            iterateStripes={this.iterateStripes}
+            count={this.state.stripes}
+          />
+        </View>
+        <View style={{ flexDirection: "row", justifyContent: "space-evenly", marginTop: 10, marginBottom: 10 }}>
           <NavButton handleSubmit={this.handleSubmit} link={"/"} />
+          <NavButton link={"/"} />
         </View>
       </View>
     );
@@ -94,13 +95,17 @@ export default class Form extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
+    width: 346,
+    height: 460,
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "column"
+    flexDirection: "column",
+    borderColor: "black",
+    borderWidth: 5,
+    borderRadius: 10,
   },
   button: {
-    marginTop: 70
+    // marginTop: 70
   }
 });
