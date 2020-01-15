@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import NavButton from "../../Components/NavButton/NavButton";
 const moment = require("moment");
 const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.115`;
+const schoolIpAddr = `192.168.1.179`;
 const placeHolderImage = require("../../../assets/a.jpg"); //TODO this is just a placeholer!!
 
 export default class StudentListItem extends Component {
@@ -53,10 +53,27 @@ export default class StudentListItem extends Component {
     const coachWhoPromoted = this.state.promotion.coach_who_promoted;
     const studentName = this.state.student.name;
 
+    const promotionField = () => {
+      if(coachWhoPromoted && lastPromotionDate) {
+        return (
+          <View>
+            <Text style={styles.text}>{daysSinceLastPromotion} days since last promotion</Text>
+            <Text style={styles.text}>
+              Last promoted by {coachWhoPromoted}
+            </Text>
+          </View>
+        )
+      } else {
+        return (
+          <Text style={styles.text}>New Student. No promotions, yet.</Text>
+        )
+      }
+    }
+
     const stripes = [...Array(4)].map((_, i) => (
       <View
         key={i}
-        style={ numOfStripes > i ? styles.filled : { ...styles.stripe, backgroundColor: color } }
+        style={ numOfStripes > i ? styles.filled : { ...styles.stripe, backgroundColor: "black" } }
       ></View>
     )).reverse();
 
@@ -66,13 +83,12 @@ export default class StudentListItem extends Component {
           <Text style={styles.nameText}>{studentName}</Text>
           <Image style={styles.image} source={placeHolderImage} />
           <View style={{ ...styles.belt, backgroundColor: color }}>
-            {stripes}
+            <View style={{ ...styles.belt,justifyContent: "space-around", width: 80, backgroundColor: "black", marginRight: 10, bottom: 9 }}>
+              {stripes}
+            </View>
           </View>
           <Text style={styles.text}>{age} years old</Text>
-          <Text style={styles.text}>{daysSinceLastPromotion} days since last promotion</Text>
-          <Text style={styles.text}>
-            Last promoted by {coachWhoPromoted}
-          </Text>
+         {promotionField()}
         </View>
         <View style={styles.button}>
           <NavButton link={"/"} />
@@ -130,15 +146,13 @@ const styles = StyleSheet.create({
     width: 10,
     height: 28,
     borderWidth: 1,
-    marginRight: 12,
     borderColor: "black"
   },
   filled: {
-    width: 10,
+    width: 8,
     height: 28,
-    borderColor: "black",
-    borderWidth: 4,
-    marginRight: 12,
-    backgroundColor: "black"
+    borderColor: "white",
+    borderWidth: 2,
+    backgroundColor: "white"
   }
 });

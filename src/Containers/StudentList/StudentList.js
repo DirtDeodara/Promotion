@@ -11,7 +11,7 @@ import {
   FlatList
 } from "react-native";
 const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.115`
+const schoolIpAddr = `192.168.1.179`
 
 export default class StudentList extends Component {
   constructor(props) {
@@ -57,6 +57,14 @@ export default class StudentList extends Component {
       }
       const daysSinceLastPromotion = now.diff(then, "days");
 
+      const promotionTextField = () => {
+        if(student.promotions) {
+          return <Text style={styles.date}>{`${daysSinceLastPromotion} days ago`}</Text>
+        } else {
+          return <Text style={styles.date}>New Student</Text>
+        }
+      };
+
       return (
         <TouchableOpacity
           onPress={() => {
@@ -68,9 +76,7 @@ export default class StudentList extends Component {
         >
           <Text style={styles.name}>{student.name}</Text>
           <Text style={styles.name} style={styles.color}>{student.beltColor}</Text> 
-          <Text
-            style={styles.date}
-          >{`${daysSinceLastPromotion} days ago`}</Text>
+          {promotionTextField()}
         </TouchableOpacity>
       );
     };
