@@ -1,14 +1,15 @@
 import React, { useState, useEffect} from "react";
 import { withRouter } from 'react-router-native';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, Image } from "react-native";
 const moment = require("moment");
 import NavButton from '../NavButton/NavButton'
 import colors from '../../data/colors';
 const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.179`
+const schoolIpAddr = `192.168.1.98`
 
-const StudentList = ({ match }) => {
+const StudentList = ({ match, history }) => {
   const [students, setStudents] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     fetchStudents();
@@ -24,6 +25,7 @@ const StudentList = ({ match }) => {
       const response = await fetch(url);
       const data = await response.json();
       setStudents(data)
+      setIsLoading(false);
     }
     catch (err) {
       console.log('Load students failed', err);
@@ -49,7 +51,7 @@ const StudentList = ({ match }) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          props.history.push(`/studentDetail/${student.id}`);
+          history.push(`/studentDetail/${student.id}`);
         }}
         student={student}
         style={styles.button}
@@ -62,17 +64,24 @@ const StudentList = ({ match }) => {
     );
   };
 
+  const loadingGif = require('../../../assets/hex.gif');
+  const LoadingSpinner = <Image style={{ height: 100, width: 100}} source={loadingGif} />
+
   return (
     <SafeAreaView>
     <View style={styles.container}>
-      <View style={styles.headers}>
-        <Text style={styles.header}>Student Name    |       Belt       |       Last Promotion</Text>
+      {isLoading ? LoadingSpinner : 
+      <View>
+        <View style={styles.headers}>
+          <Text style={styles.header}>Student Name    |       Belt       |       Last Promotion</Text>
+        </View>
+        <FlatList
+          keyExtractor={(_, i) => i.toString()}
+          data={students}
+          renderItem={listOfStudents}
+        /> 
       </View>
-      <FlatList
-        keyExtractor={(_, i) => i.toString()}
-        data={students}
-        renderItem={listOfStudents}
-      ></FlatList>
+      }
     </View>
     <View style={styles.button}>
       <NavButton link={"/form"} />
