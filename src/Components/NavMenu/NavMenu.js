@@ -5,8 +5,6 @@ import { AntDesign } from "@expo/vector-icons";
 import colors from '../../data/colors';
 
 const NavMenu = ({ handleTouch, position, history }) => {
- 
-
   const listOfLinks = colors.map((color, i) => {
     return (
       <TouchableOpacity key={i} onPress={() => {

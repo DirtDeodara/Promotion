@@ -5,7 +5,7 @@ const moment = require("moment");
 import NavButton from '../NavButton/NavButton'
 import colors from '../../data/colors';
 const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.98`
+const schoolIpAddr = `192.168.1.82`
 
 const StudentList = ({ match, history }) => {
   const [students, setStudents] = useState([]);
@@ -70,21 +70,24 @@ const StudentList = ({ match, history }) => {
   return (
     <SafeAreaView>
     <View style={styles.container}>
-      {isLoading ? LoadingSpinner : 
-      <View>
-        <View style={styles.headers}>
-          <Text style={styles.header}>Student Name    |       Belt       |       Last Promotion</Text>
+      {isLoading 
+        ? 
+        LoadingSpinner 
+        : 
+        <View style={styles.container}>
+          <View style={styles.headers}>
+            <Text style={styles.header}>Student Name       |       Belt       |       Last Promotion</Text>
+          </View>
+          <FlatList
+            keyExtractor={(_, i) => i.toString()}
+            data={students}
+            renderItem={listOfStudents}
+          /> 
         </View>
-        <FlatList
-          keyExtractor={(_, i) => i.toString()}
-          data={students}
-          renderItem={listOfStudents}
-        /> 
-      </View>
       }
     </View>
     <View style={styles.button}>
-      <NavButton link={"/form"} />
+      <NavButton />
     </View>
   </SafeAreaView>
   );
