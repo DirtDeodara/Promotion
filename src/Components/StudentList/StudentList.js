@@ -2,6 +2,7 @@ import React, { useState, useEffect} from "react";
 import { withRouter } from 'react-router-native';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, Image } from "react-native";
 const moment = require("moment");
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import NavButton from '../NavButton/NavButton'
 const homeIpAddr = `10.0.0.201`;
 const schoolIpAddr = `192.168.1.82`
@@ -63,15 +64,13 @@ const StudentList = ({ match, history }) => {
     );
   };
 
-  const loadingGif = require('../../../assets/hex.gif');
-  const LoadingSpinner = <Image style={{ height: 100, width: 100}} source={loadingGif} />
 
   return (
     <SafeAreaView>
     <View style={styles.container}>
       {isLoading 
         ? 
-        LoadingSpinner 
+        <LoadingSpinner /> 
         : 
         <View style={styles.container}>
           <View style={styles.headers}>

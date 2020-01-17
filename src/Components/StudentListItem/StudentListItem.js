@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { withRouter } from 'react-router-native';
-import NavButton from "../../Components/NavButton/NavButton";
+import NavButton from '../../Components/NavButton/NavButton';
+import BeltImage from '../BeltImage/BeltImage';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 const moment = require("moment");
 const homeIpAddr = `10.0.0.201`;
 const schoolIpAddr = `192.168.1.82`;
@@ -69,9 +71,6 @@ const StudentListItem = ({ match }) => {
       }
     }
 
-    const loadingGif = require('../../../assets/hex.gif');
-    const LoadingSpinner = <Image style={{ height: 100, width: 100}} source={loadingGif} />
-
     const stripes = [...Array(4)].map((_, i) => (
       <View
         key={i}
@@ -84,16 +83,12 @@ const StudentListItem = ({ match }) => {
         <View style={{ ...styles.container, backgroundColor: isLoading ? "black" : "white" }}>
           {isLoading 
             ? 
-            LoadingSpinner
+            <LoadingSpinner/>
             :
             <View style={styles.container}>
               <Text style={styles.nameText}>{studentName}</Text>
               <Image style={styles.image} source={placeHolderImage} />
-              <View style={{ ...styles.belt, backgroundColor: color }}>
-                <View style={{ ...styles.belt, justifyContent: "space-around", width: 80, backgroundColor: "black", marginRight: 10, bottom: 9 }}>
-                  {stripes}
-                </View>
-              </View>
+              <BeltImage color={color} stripes={stripes}/>
             <Text style={styles.text}>{age} years old</Text>
             {promotionField()}
           </View>}
