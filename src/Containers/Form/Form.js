@@ -7,8 +7,7 @@ import BeltPicker from "../../Components/BeltPicker/BeltPicker";
 import Stripes from "../../Components/Stripes/Stripes";
 import NavButton from "../../Components/NavButton/NavButton";
 const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.115`;
-import { addStudent } from "../../services/studentApi";
+const schoolIpAddr = `192.168.1.82`;
 
 export default class Form extends Component {
   constructor(props) {

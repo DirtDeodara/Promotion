@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-native';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, Image } from "react-native";
 const moment = require("moment");
 import NavButton from '../NavButton/NavButton'
-import colors from '../../data/colors';
 const homeIpAddr = `10.0.0.201`;
 const schoolIpAddr = `192.168.1.82`
 
@@ -86,9 +85,13 @@ const StudentList = ({ match, history }) => {
         </View>
       }
     </View>
-    <View style={styles.button}>
-      <NavButton />
-    </View>
+    {history.index === 0
+      ? 
+      <View style={{  width: 346, height: 100 }}/>
+      : 
+      <View style={styles.button}>
+        <NavButton />
+      </View>}
   </SafeAreaView>
   );
 };

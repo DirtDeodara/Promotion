@@ -1,8 +1,9 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { useHistory } from "react-router-native";
+import { AntDesign } from "@expo/vector-icons";
 
-function NavButton(props) {
+function NavButton(props) { //TODO destructure handleSubmit
   const history = useHistory();
  
   return (
@@ -10,10 +11,12 @@ function NavButton(props) {
       <TouchableOpacity
         onPress={() => {
           props.handleSubmit && props.handleSubmit()
-          history.push(props.link)
+          history.goBack()
         }}
         style={styles.button}
-      />
+      >
+        <AntDesign name="doubleleft" size={50} style={{ right: 2 }}/>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -21,6 +24,8 @@ function NavButton(props) {
 const styles = StyleSheet.create({
   container: {},
   button: {
+    alignItems: "center",
+    justifyContent: "center",
     width: 70,
     height: 70,
     color: "black",

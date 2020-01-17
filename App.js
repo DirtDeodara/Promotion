@@ -3,19 +3,17 @@ import { StyleSheet, View } from "react-native";
 import { NativeRouter, Route } from "react-router-native";
 import Form from "./src/Containers/Form/Form";
 import Header from "./src/Components/Header/Header";
-// import StudentList from "./src/Containers/StudentList/StudentList";
 import StudentList from './src/Components/StudentList/StudentList';
-import StudentListItem from "./src/Containers/StudentListItem/StudentListItem";
+// import StudentListItem from "./src/Containers/StudentListItem/StudentListItem";
+import StudentListItem from './src/Components/StudentListItem/StudentListItem';
 import Burger from "./src/Components/Burger/Burger";
 import NavMenu from "./src/Components/NavMenu/NavMenu";
 
 export default function App() {
   const [position, setPosition] = useState({ isOpen: false });
-  console.log("POSITION", position);
 
   const handleTouch = () => {
     setPosition({ isOpen: !position.isOpen });
-    console.log(position);
   };
   return (
     <View style={styles.container}>

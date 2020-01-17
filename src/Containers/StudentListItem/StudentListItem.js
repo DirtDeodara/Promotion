@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import NavButton from "../../Components/NavButton/NavButton";
 const moment = require("moment");
 const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.179`;
+const schoolIpAddr = `192.168.1.82`;
 const placeHolderImage = require("../../../assets/a.jpg"); //TODO this is just a placeholer!!
 
 export default class StudentListItem extends Component {

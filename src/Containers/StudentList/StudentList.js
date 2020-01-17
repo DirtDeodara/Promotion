@@ -11,7 +11,7 @@ import {
   FlatList
 } from "react-native";
 const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.179`
+const schoolIpAddr = `192.168.1.82`
 
 export default class StudentList extends Component {
   constructor(props) {

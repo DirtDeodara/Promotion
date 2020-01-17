@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from 'react-router-native';
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import colors from '../../data/colors';
 
@@ -27,10 +27,10 @@ const NavMenu = ({ handleTouch, position, history }) => {
       }}
       >
       <AntDesign name="close" size={45} style={{ paddingLeft: 110 }}/>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => history.push('/form')}>
         <Text style={styles.link}>New Student Form</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => history.push('/')}>
         <Text style={styles.link}>All Students</Text>
       </TouchableOpacity>
       {listOfLinks}
@@ -59,19 +59,6 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingLeft: 25,
     height: 35
-  },
-  tab: {
-    backgroundColor: "white",
-    height: 50,
-    width: 50,
-    borderTopWidth: 3,
-    borderBottomWidth: 3,
-    borderLeftWidth: 3,
-    borderRightWidth: 0,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-    right: 50,
-    bottom: 300
   }
 });
 
