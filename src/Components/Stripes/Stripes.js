@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Button, StyleSheet } from "react-native";
+import styles from './stripesStyles';
 
 function Stripes({ count, iterateStripes }) {
   const stripes = [...Array(4)].map((_, i) => (
@@ -18,30 +19,5 @@ function Stripes({ count, iterateStripes }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: 70,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    marginTop: 2
-  },
-  stripe: {
-    width: 30,
-    borderColor: "black",
-    borderWidth: 4,
-    borderRadius: 5,
-    marginRight: 12,
-    backgroundColor: "white"
-  },
-  filled: {
-    width: 30,
-    borderColor: "black",
-    borderWidth: 4,
-    borderRadius: 5,
-    marginRight: 12,
-    backgroundColor: "black"
-  }
-});
 
 export default Stripes;
