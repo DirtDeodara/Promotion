@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import styles from './beltImageStyles';
 
 const BeltImage = ({ color, stripes }) => {
   return (
@@ -17,17 +18,5 @@ const BeltImage = ({ color, stripes }) => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    height: 30,
-    width: 300,
-    marginTop: 8,
-    borderColor: "black",
-    borderWidth: 1
-  }
-})
 
 export default BeltImage;
