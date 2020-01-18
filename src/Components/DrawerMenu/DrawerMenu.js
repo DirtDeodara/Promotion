@@ -1,11 +1,11 @@
 import React from "react";
 import { withRouter } from 'react-router-native';
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import styles from './navMenuStyles';
+import styles from './drawerMenuStyles';
 import { AntDesign } from "@expo/vector-icons";
 import colors from '../../data/colors';
 
-const NavMenu = ({ handleTouch, position, history }) => {
+const DrawerMenu = ({ handleTouch, position, history }) => {
   const listOfLinks = colors.map((color, i) => {
     return (
       <TouchableOpacity key={i} onPress={() => {
@@ -39,4 +39,4 @@ const NavMenu = ({ handleTouch, position, history }) => {
   );
 };
 
-export default withRouter(NavMenu);
+export default withRouter(DrawerMenu);
