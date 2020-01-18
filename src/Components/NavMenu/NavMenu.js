@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from 'react-router-native';
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import styles from './navMenuStyles';
 import { AntDesign } from "@expo/vector-icons";
 import colors from '../../data/colors';
 
@@ -37,29 +38,5 @@ const NavMenu = ({ handleTouch, position, history }) => {
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    height: 650,
-    width: 200,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    backgroundColor: "white",
-    // opacity: 1,
-    marginBottom: 20,
-    paddingTop: 24,
-    paddingBottom: 30
-  },
-  link: {
-    width: 200,
-    color: "black",
-    fontSize: 18,
-    paddingTop: 5,
-    paddingLeft: 25,
-    height: 35
-  }
-});
 
 export default withRouter(NavMenu);
