@@ -1,37 +1,21 @@
 import React, { useState, useEffect} from "react";
 import { withRouter } from 'react-router-native';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, Image } from "react-native";
-const moment = require("moment");
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from "react-native";
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import NavButton from '../NavButton/NavButton'
-const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.82`
+import { fetchStudents } from '../../services/studentsApi';
+import styles from './studentListStyles';
+const moment = require("moment");
 
 const StudentList = ({ match, history }) => {
   const [students, setStudents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
-    fetchStudents();
+    fetchStudents(match.params.color, setStudents, setIsLoading);
   }, [match.params.color]);
 
-  const fetchStudents = async () => {
-    try {
-      let url = match.params.color 
-      ? 
-      `http://${schoolIpAddr}:3000/api/v1/students/color/${match.params.color.toLowerCase()}` 
-      :
-      `http://${schoolIpAddr}:3000/api/v1/students`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setStudents(data)
-      setIsLoading(false);
-    }
-    catch (err) {
-      console.log('Load students failed', err);
-    }
-  };
-
+  
   const listOfStudents = ({ item: student }) => {
     const now = moment();
     let then;
@@ -40,9 +24,14 @@ const StudentList = ({ match, history }) => {
     }
     const daysSinceLastPromotion = now.diff(then, "days");
 
-    const promotionTextField = () => {
+    const lastPromotionAndBeltColorField = () => {
       if(student.promotions) {
-        return <Text style={styles.date}>{`${daysSinceLastPromotion} days ago`}</Text>
+        return (
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ ...styles.beltIndicator, backgroundColor: student.promotions.belt_color  === 'brown' ? '#654321' : student.promotions.belt_color }}/> 
+            <Text style={styles.date}>{`${daysSinceLastPromotion} days ago`}</Text>
+          </View>
+        )
       } else {
         return <Text style={styles.date}>New Student</Text>
       }
@@ -52,18 +41,16 @@ const StudentList = ({ match, history }) => {
       <TouchableOpacity
         onPress={() => {
           history.push(`/studentDetail/${student.id}`);
+          console.log({ ...student, ...student.promotions })
         }}
         student={student}
-        style={styles.button}
         style={styles.item}
       >
         <Text style={styles.name}>{student.name}</Text>
-        <Text style={styles.name} style={styles.color}>{student.beltColor}</Text> 
-        {promotionTextField()}
+        {lastPromotionAndBeltColorField()}
       </TouchableOpacity>
     );
   };
-
 
   return (
     <SafeAreaView>
@@ -74,12 +61,13 @@ const StudentList = ({ match, history }) => {
         : 
         <View style={styles.container}>
           <View style={styles.headers}>
-            <Text style={styles.header}>Student Name       |       Belt       |       Last Promotion</Text>
+            <Text style={styles.header}>Student Name                                  Last Promotion</Text>
           </View>
           <FlatList
             keyExtractor={(_, i) => i.toString()}
             data={students}
             renderItem={listOfStudents}
+            initialNumToRender={10}
           /> 
         </View>
       }
@@ -94,49 +82,5 @@ const StudentList = ({ match, history }) => {
   </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: 346,
-    height: 460,
-    backgroundColor: "black",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-    borderColor: "black",
-    borderWidth: 5,
-    borderRadius: 10,
-  },
-  headers: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignContent: "space-around",
-    fontSize: 10,
-    color: "white"
-  },
-  header: {
-    color: "white"
-  },
-  item: {
-    flex: 1,
-    fontSize: 30,
-    justifyContent: "space-between",
-    height: 40,
-    width: 340,
-    flexDirection: "row",
-    backgroundColor: "white",
-    borderColor: "black",
-    borderWidth: 1,
-    padding: 10,
-    marginVertical: 2
-  },
-  button: {
-    width: 346,
-    height: 100,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-  }
-});
 
 export default withRouter(StudentList);
