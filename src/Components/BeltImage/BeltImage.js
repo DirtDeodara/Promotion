@@ -2,14 +2,14 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import styles from './beltImageStyles';
 
-const BeltImage = ({ color, stripes }) => {
+const BeltImage = ({ color, stripes, beltWidth, barWidth }) => {
   return (
-    <View name="main-belt" style={{ ...styles.container, backgroundColor: color }}>
+    <View name="main-belt" style={{ ...styles.container, width: beltWidth, backgroundColor: color === 'brown' ?  '#654321' : color }}>
       <View name="stripe-bar" 
         style={{ 
           ...styles.container, 
           justifyContent: "space-around", 
-          width: 80, 
+          width: barWidth, 
           backgroundColor: "black", 
           marginRight: 10, 
           bottom: 9 }}>
