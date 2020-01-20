@@ -1,19 +1,13 @@
 import React from "react";
 import { Picker, View } from "react-native";
-import colors from '../../data/colors'
+import styles from './beltPickerStyles';
+import colors from '../../data/colors';
 
 function BeltPicker({ color, selectColor }) {
   
   return (
     <View
-      style={{
-        width: 200,
-        height: 48,
-        borderColor: "black",
-        borderWidth: 4,
-        borderRadius: 10,
-        marginBottom: 10
-      }}
+      style={styles.container}
     >
       <Picker
         accessible={true}
