@@ -41,7 +41,6 @@ const StudentList = ({ match, history }) => {
       <TouchableOpacity
         onPress={() => {
           history.push(`/studentDetail/${student.id}`);
-          console.log({ ...student, ...student.promotions })
         }}
         student={student}
         style={styles.item}
@@ -68,6 +67,7 @@ const StudentList = ({ match, history }) => {
             data={students}
             renderItem={listOfStudents}
             initialNumToRender={10}
+            showsVerticalScrollIndicator={false}
           /> 
         </View>
       }

@@ -27,10 +27,11 @@ export default StyleSheet.create({
     fontSize: 30,
     justifyContent: "space-between",
     height: 40,
-    width: 340,
+    width: 336,
     flexDirection: "row",
     backgroundColor: "white",
     borderColor: "black",
+    borderRadius: 5,
     borderWidth: 1,
     padding: 10,
     marginVertical: 2
@@ -48,6 +49,6 @@ export default StyleSheet.create({
     right: 30,
     bottom: 6,
     height: 30,
-    width: 60,
+    width: 30,
   }
 });
