@@ -1,40 +1,25 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { useHistory } from "react-router-native";
 import { AntDesign } from "@expo/vector-icons";
+import styles from './navButtonStyles';
 
-function NavButton(props) { //TODO destructure handleSubmit
+function NavButton({ handleSubmit }) { 
   const history = useHistory();
  
   return (
-    <View style={styles.container}>
+    
       <TouchableOpacity
         onPress={() => {
-          props.handleSubmit && props.handleSubmit()
+          handleSubmit && handleSubmit()
           history.goBack()
         }}
-        style={styles.button}
+        style={styles.container}
       >
         <AntDesign name="doubleleft" size={50} style={{ right: 2 }}/>
       </TouchableOpacity>
-    </View>
+   
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: 70,
-    height: 70,
-    color: "black",
-    backgroundColor: "#157DAC",
-    borderColor: "black",
-    borderWidth: 4,
-    borderRadius: 35,
-    marginBottom: 10
-  }
-});
 
 export default NavButton;
