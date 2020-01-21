@@ -47,7 +47,7 @@ export default class Form extends Component {
   };
 
   handleSubmit = () => {
-    fetch(`http://${schoolIpAddr}:3000/api/v1/students`, {
+    fetch(`http://${honmeIpAddr}:3000/api/v1/students`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

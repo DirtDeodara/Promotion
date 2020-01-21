@@ -22,22 +22,8 @@ const NewStudentForm = () => {
     setStripes(stripes < 4 ? stripes + 1 : 0);
   };
 
-  // handleSubmit = () => {
-  //   fetch(`http://${homeIpAddr}:3000/api/v1/students`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       name: name,
-  //       date_of_birth: dob,
-  //       gym: gym
-  //     }),
-  //   });
-  // };
-
-  handleSubmit = async() => {
-    await fetch(`http://${homeIpAddr}:3000/api/v1/students`, {
+   handleSubmit = async () => {
+    const createStudentRes = await fetch(`http://${homeIpAddr}:3000/api/v1/students`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -49,20 +35,19 @@ const NewStudentForm = () => {
       }),
     });
 
-    const student = await fetchNewestStudent();
-    console.log(student)
-
-    await fetch(`http://${homeIpAddr}:3000/api/v1/promotions`, {
+    const student = await createStudentRes.json();
+    console.log(student);
+    fetch(`http://${homeIpAddr}:3000/api/v1/promotions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: {
+      body: JSON.stringify({
         studentId: student.id,
         belt_color: 'white',
         stripes: 0,
         coach_who_promoted: 'dirt'
-      }
+      })
     })
   };
 
