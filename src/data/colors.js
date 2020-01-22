@@ -1,8 +1,8 @@
 export default colors = [
-  "Yellow/White",
-  "Grey/Black",
-  "Grey",
-  "Grey/White",
+  "Yellow/White/Youth",
+  "Grey/Black/Youth",
+  "Grey/Grey/Youth",
+  "Grey/White/Youth",
   "White/Yellow",
   "White/Orange",
   "White/Green",
