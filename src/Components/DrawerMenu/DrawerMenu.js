@@ -7,11 +7,13 @@ import colors from '../../data/colors';
 
 const DrawerMenu = ({ handleTouch, position, history }) => {
   const listOfLinks = colors.map((color, i) => {
+    const [firstColor, secondColor] = color.split('/').slice(0, 2);
+    const colorText = color.length < 13 ? color : `${firstColor}/${secondColor}`;
     return (
       <TouchableOpacity key={i} onPress={() => {
         history.push(`/studentList/${color}`);
       }}>
-        <Text style={styles.link}>{`${color} belts`}</Text>
+        <Text style={styles.link}>{`${colorText} belts`}</Text>
       </TouchableOpacity>
     )
   });
