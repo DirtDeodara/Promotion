@@ -11,6 +11,7 @@ function Stripes({ count, iterateStripes }) {
     <View style={styles.container}>
       {stripes}
       <Button
+        style={ styles.button }
         accessible={true}
         accessibilityLabel="Tap this button to add a stripe"
         title=" + "

@@ -2,7 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    height: 70,
+    backgroundColor: "red",
+    height: 50,
+    width: 300,
     flexDirection: "row",
     justifyContent: "flex-end",
     marginTop: 2
@@ -13,7 +15,7 @@ export default StyleSheet.create({
     borderWidth: 4,
     borderRadius: 5,
     marginRight: 12,
-    backgroundColor: "white"
+    backgroundColor: "black"
   },
   filled: {
     width: 30,
@@ -21,6 +23,9 @@ export default StyleSheet.create({
     borderWidth: 4,
     borderRadius: 5,
     marginRight: 12,
-    backgroundColor: "black"
+    backgroundColor: "white"
+  },
+  button: {
+
   }
 });
