@@ -36,7 +36,6 @@ export const fetchNewestStudent = async () => {
       `http://${homeIpAddr}:3000/api/v1/students/newest`
     );
     const data = await response.json();
-    console.log('from api', data)
     return data;
   } catch (err) {
     console.log("The desired student failed to load", err);
