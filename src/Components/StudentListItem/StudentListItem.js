@@ -19,15 +19,22 @@ const StudentListItem = ({ match }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasBeenPromoted, setHasBeenPromoted] = useState(false);
   const [pendingAmountOfStripes, setPendingAmountOfStripes] = useState(0)
-  console.log(pendingAmountOfStripes);
-  console.log(hasBeenPromoted);
   
   useEffect(() => {
     fetchStudent(match.params.id, setStudent);
     fetchPromotion(match.params.id, setPromotion, setIsLoading);
   },[]);
 
-  const promoteIcon = () => <MaterialCommunityIcons name="trophy-award" size={50} style={{ right: 4, bottom: 5 }} color={hasBeenPromoted ? "gold" : "black"}/>
+  const promoteIcon = () => {
+    return (
+      <MaterialCommunityIcons 
+        name="trophy-award" 
+        size={50} 
+        style={{ right: 4, bottom: 5 }} 
+        color={hasBeenPromoted ? "gold" : "black"}
+      />
+    )};
+
   const backIcon = () => <AntDesign name="doubleleft" size={50} style={{ right: 2 }}/>;
 
   const now = moment();
@@ -94,7 +101,7 @@ const StudentListItem = ({ match }) => {
           </View>}
       </View>
       <View style={styles.button}>
-        <NavButton icon={backIcon} handleSubmit={handleSubmit}/>
+        <NavButton icon={backIcon} handleSubmit={hasBeenPromoted ? handleSubmit : null}/>
       </View>
     </View>
   );
