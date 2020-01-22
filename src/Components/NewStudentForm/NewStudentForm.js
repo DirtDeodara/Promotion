@@ -6,7 +6,7 @@ import BeltPicker from '../BeltPicker/BeltPicker';
 import Stripes from '../Stripes/Stripes';
 import NavButton from '../NavButton/NavButton';
 import styles from './newStudentFormStyles';
-import { fetchNewestStudent } from '../../services/studentsApi';
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 const homeIpAddr = `10.0.0.201`;
 const schoolIpAddr = `192.168.1.82`;
 
@@ -22,6 +22,13 @@ const NewStudentForm = () => {
     setStripes(stripes < 4 ? stripes + 1 : 0);
   };
 
+  const backIcon = () => {
+    return <AntDesign name="doubleleft" size={50} style={{ right: 2 }}/>
+  }
+  const addStudentIcon = () => {
+    return <MaterialIcons name="person-add" size={50} style={{ right: 2 }}/>
+  }
+
    handleSubmit = async () => {
     const createStudentRes = await fetch(`http://${homeIpAddr}:3000/api/v1/students`, {
       method: 'POST',
@@ -36,7 +43,7 @@ const NewStudentForm = () => {
     });
 
     const student = await createStudentRes.json();
-    console.log(student);
+    
     fetch(`http://${homeIpAddr}:3000/api/v1/promotions`, {
       method: 'POST',
       headers: {
@@ -75,8 +82,8 @@ const NewStudentForm = () => {
           /> */}
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-evenly", marginTop: 10, marginBottom: 10 }}>
-          <NavButton handleSubmit={handleSubmit} />
-          <NavButton />
+          <NavButton icon={addStudentIcon} handleSubmit={handleSubmit}/>
+          <NavButton icon={backIcon}/>
         </View>
       </View>
   )

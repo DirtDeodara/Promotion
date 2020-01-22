@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-native';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from "react-native";
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import NavButton from '../NavButton/NavButton'
+import { AntDesign } from "@expo/vector-icons";
 import { fetchStudents } from '../../services/studentsApi';
 import styles from './studentListStyles';
 const moment = require("moment");
@@ -15,6 +16,9 @@ const StudentList = ({ match, history }) => {
     fetchStudents(match.params.color, setStudents, setIsLoading);
   }, [match.params.color]);
 
+  const backIcon = () => {
+    return <AntDesign name="doubleleft" size={50} style={{ right: 2 }}/>
+  }
   
   const listOfStudents = ({ item: student }) => {
     const now = moment();
@@ -77,7 +81,7 @@ const StudentList = ({ match, history }) => {
       <View style={{  width: 346, height: 100 }}/>
       : 
       <View style={styles.button}>
-        <NavButton />
+        <NavButton icon={backIcon}/>
       </View>}
   </SafeAreaView>
   );

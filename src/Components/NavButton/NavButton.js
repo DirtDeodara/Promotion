@@ -4,19 +4,18 @@ import { useHistory } from "react-router-native";
 import { AntDesign } from "@expo/vector-icons";
 import styles from './navButtonStyles';
 
-function NavButton({ handleSubmit }) { 
+function NavButton({ handleSubmit, icon }) { 
   const history = useHistory();
  
   return (
-    
       <TouchableOpacity
-        onPress={() => {
-          handleSubmit && handleSubmit()
-          history.goBack()
+        onPress={ async() => {
+          handleSubmit && await handleSubmit();
+          history.goBack();
         }}
         style={styles.container}
       >
-        <AntDesign name="doubleleft" size={50} style={{ right: 2 }}/>
+        {icon()}
       </TouchableOpacity>
    
   );

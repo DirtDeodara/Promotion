@@ -28,7 +28,7 @@ const DrawerMenu = ({ handleTouch, position, history }) => {
       }}
       >
       <AntDesign name="close" size={45} style={{ paddingLeft: 110 }}/>
-      <TouchableOpacity onPress={() => history.push('/form')}>
+      <TouchableOpacity onPress={() => history.push('/newStudentForm')}>
         <Text style={styles.link}>New Student Form</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => history.push('/')}>
