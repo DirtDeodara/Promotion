@@ -3,12 +3,10 @@ import { Picker, View } from "react-native";
 import styles from './beltPickerStyles';
 import colors from '../../data/colors';
 
-function BeltPicker({ color, selectColor }) {
+function BeltPicker({ color, selectColor, colorOptions }) {
   
   return (
-    <View
-      style={styles.container}
-    >
+    <View style={styles.container}>
       <Picker
         accessible={true}
         accessibilityLabel="choose a belt color from this drop down menu"
@@ -18,8 +16,8 @@ function BeltPicker({ color, selectColor }) {
         }}
         onValueChange={selectColor}
       >
-        {colors.map(v => {
-          return <Picker.Item label={v} value={v} key={v} />;
+        {colorOptions.map(value => {
+          return <Picker.Item label={value} value={value} key={value} />;
         })}
       </Picker>
     </View>

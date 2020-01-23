@@ -13,17 +13,16 @@ export default StyleSheet.create({
   },
   nameText: {
     fontSize: 25,
-    marginBottom: 20
   },
   text: {
-    fontSize: 20
+    fontSize: 20,
   },
   image: {
     borderColor: "black",
     borderWidth: 5,
     borderRadius: 10,
-    width: 200,
-    height: 200
+    width: 180,
+    height: 180
   },
   button: {
     width: 346,
@@ -33,15 +32,6 @@ export default StyleSheet.create({
     justifyContent: "center",
     marginTop: 10,
     marginBottom: 10
-  },
-  belt: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    height: 30,
-    width: 300,
-    marginTop: 8,
-    borderColor: "black",
-    borderWidth: 1
   },
   stripe: {
     width: 10,

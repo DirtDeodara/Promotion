@@ -4,36 +4,30 @@ import { withRouter } from 'react-router-native';
 import NavButton from '../../Components/NavButton/NavButton';
 import BeltImage from '../BeltImage/BeltImage';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import PromotionButtons from '../PromotionButtons/PromotionButtons';
 import styles from './studentItemListStyles';
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { fetchStudent } from '../../services/studentsApi';
 import { fetchPromotion } from '../../services/promotionsApi';
+import { youthBelts, adultBelts } from '../../data/beltTypes';
 const moment = require("moment");
 const placeHolderImage = require("../../../assets/a.jpg"); //TODO this is just a placeholer!!
-const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.82`;
+import { schoolIpAddr, homeIpAddr } from '../../data/ipAddresses';
 
 const StudentListItem = ({ match }) => {
   const [student, setStudent] = useState({});
   const [promotion, setPromotion] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [hasBeenPromoted, setHasBeenPromoted] = useState(false);
-  const [pendingAmountOfStripes, setPendingAmountOfStripes] = useState(0)
+  const [hasBeenStriped, setHasBeenStriped] = useState(false);
+  const [pendingAmountOfStripes, setPendingAmountOfStripes] = useState(0);
+  const [newBeltColor, setNewBeltColor] = useState('White');
   
   useEffect(() => {
     fetchStudent(match.params.id, setStudent);
     fetchPromotion(match.params.id, setPromotion, setIsLoading);
+    setHasBeenStriped(false)
   },[]);
-
-  const promoteIcon = () => {
-    return (
-      <MaterialCommunityIcons 
-        name="trophy-award" 
-        size={50} 
-        style={{ right: 4, bottom: 5 }} 
-        color={hasBeenPromoted ? "gold" : "black"}
-      />
-    )};
 
   const backIcon = () => <AntDesign name="doubleleft" size={50} style={{ right: 2 }}/>;
 
@@ -43,12 +37,13 @@ const StudentListItem = ({ match }) => {
   const lastPromotionDate = moment(promotion.createdAt);
   const daysSinceLastPromotion = now.diff(lastPromotionDate, "days");
   const color = String(promotion.belt_color).toLowerCase();
-  const numOfStripes = hasBeenPromoted ? pendingAmountOfStripes: promotion.stripes;
+  const capitalizedColor = color.charAt(0).toUpperCase() + color.slice(1);
+  const numOfStripes = hasBeenStriped ? pendingAmountOfStripes : promotion.stripes;
   const coachWhoPromoted = promotion.coach_who_promoted;
   const studentName = student.name;
 
   const handleSubmit = async () => {
-    fetch(`http://${homeIpAddr}:3000/api/v1/promotions`, {
+    fetch(`http://${schoolIpAddr}:3000/api/v1/promotions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -60,6 +55,18 @@ const StudentListItem = ({ match }) => {
         coach_who_promoted: 'dirt'
       })
     })
+  }
+  console.log(promotion.belt_color);
+
+  const addStripe = () => {
+    console.log(promotion)
+    setHasBeenStriped(!hasBeenStriped); 
+    setPendingAmountOfStripes(promotion.stripes + 1); //TODO i dont know why this works. i wouldnt think it would remove a stripe
+  }
+
+  const changeBeltColor = (newColor) => {
+    setHasBeenPromoted(!hasBeenPromoted);
+    setNewBeltColor(newColor)
   }
 
   const stripes = [...Array(4)].map((_, i) => (
@@ -78,26 +85,21 @@ const StudentListItem = ({ match }) => {
           :
           <View style={styles.container}>
             <Text style={styles.nameText}>{studentName}</Text>
-            <Image style={styles.image} source={placeHolderImage} />
-            <TouchableOpacity 
-              onPress={() => {
-                setPendingAmountOfStripes(promotion.stripes + 1);
-                setHasBeenPromoted(true)
-              }}
-              style={{ 
-                borderColor: hasBeenPromoted ? "gold" : "black",
-                backgroundColor: hasBeenPromoted ? "black" : "white",
-                borderWidth: 4, 
-                width: 50, 
-                height: 50, 
-                borderRadius: 30, 
-                top: 5 }}>
-                {promoteIcon()}
-              </TouchableOpacity>
-            <BeltImage color={color} stripes={stripes}/>
             <Text style={styles.text}>{age} years old</Text>
-            <Text style={styles.text}>{daysSinceLastPromotion} days since last promotion</Text>
-            <Text style={styles.text}>Last promoted by {coachWhoPromoted}</Text>
+            <Image style={styles.image} source={placeHolderImage} />
+            <View>
+              <PromotionButtons 
+                setHasBeenStriped={setHasBeenStriped}
+                hasBeenStriped={hasBeenStriped}
+                hasBeenPromoted={hasBeenPromoted} 
+                addStripe={addStripe} 
+                color={color} 
+                studentAge={age} 
+                selectColor={setNewBeltColor}
+                changeBeltColor={changeBeltColor}/>
+            </View>
+            <BeltImage color={color} stripes={stripes}/>
+            <Text style={styles.text}>Last striped by {coachWhoPromoted} {daysSinceLastPromotion} days ago</Text>
           </View>}
       </View>
       <View style={styles.button}>

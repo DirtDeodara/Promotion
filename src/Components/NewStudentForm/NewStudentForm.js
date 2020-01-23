@@ -7,8 +7,7 @@ import Stripes from '../Stripes/Stripes';
 import NavButton from '../NavButton/NavButton';
 import styles from './newStudentFormStyles';
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
-const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.82`;
+import { schoolIpAddr, homeIpAddr } from '../../data/ipAddresses';
 
 const NewStudentForm = () => {
   const [dob, setDOB] = useState(new Date());
@@ -30,7 +29,7 @@ const NewStudentForm = () => {
   }
 
    handleSubmit = async () => {
-    const createStudentRes = await fetch(`http://${homeIpAddr}:3000/api/v1/students`, {
+    const createStudentRes = await fetch(`http://${schoolIpAddr}:3000/api/v1/students`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -44,7 +43,7 @@ const NewStudentForm = () => {
 
     const student = await createStudentRes.json();
     
-    fetch(`http://${homeIpAddr}:3000/api/v1/promotions`, {
+    fetch(`http://${schoolIpAddr}:3000/api/v1/promotions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

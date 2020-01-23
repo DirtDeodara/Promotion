@@ -1,10 +1,9 @@
-const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.82`
+import { schoolIpAddr, homeIpAddr } from '../data/ipAddresses';
 
 export const fetchPromotion = async (id, setPromotion, setIsLoading) => { 
   try {
     const response = await fetch(
-      `http://${homeIpAddr}:3000/api/v1/promotions/${id}`
+      `http://${schoolIpAddr}:3000/api/v1/promotions/${id}`
     );
     const data = await response.json();
     setPromotion(data);

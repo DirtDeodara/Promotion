@@ -3,7 +3,8 @@ import { View, TouchableOpacity } from "react-native";
 import styles from './beltImageStyles';
 
 const BeltImage = ({ color, stripes }) => {
-  const standInColor = "Yellow/White/Youth"; //TODO delete this and pass in 'color' again below on line 8
+  const standInColor = "Yellow/White/Youth"; //TODO delete this and pass in 'color' again below on line 9
+
   const youthBelt = () => {
     const [maincolor, stripeColor] = standInColor.toLowerCase().split('/').slice(0, 2)
     return (
@@ -13,7 +14,7 @@ const BeltImage = ({ color, stripes }) => {
           flexDirection: "column", 
           width: 210, 
           backgroundColor: maincolor }}>
-          <View style={{ width: 208, height: 10, backgroundColor: stripeColor, bottom: 10}}/>
+          <View name="horizontal-stripe" style={{ width: 208, height: 10, backgroundColor: stripeColor, bottom: 10}}/>
       </View>
       <View name="stripe-bar" 
         style={{ 
@@ -22,16 +23,15 @@ const BeltImage = ({ color, stripes }) => {
           justifyContent: "space-around", 
           width: 80, 
           backgroundColor: "black", 
-          // marginRight: 10, 
-          // bottom: 9 
           }}>
         {stripes}
       </View>
-      <View style={{ ...styles.container,
+      <View name="end-cap" 
+        style={{ ...styles.container,
           flexDirection: "column", 
           width: 10, 
           backgroundColor: maincolor }}>
-          <View style={{ width: 8, height: 10, backgroundColor: stripeColor, bottom: 10}}/>
+          <View name="horizontal-stripe" style={{ width: 8, height: 10, backgroundColor: stripeColor, bottom: 10}}/>
       </View>
     </View>
     )

@@ -1,13 +1,12 @@
-const homeIpAddr = `10.0.0.201`;
-const schoolIpAddr = `192.168.1.82`
+import { schoolIpAddr, homeIpAddr } from '../data/ipAddresses';
 
 export const fetchStudents = async (color, setStudents, setIsLoading) => {
   try {
     let url = color 
     ? 
-    `http://${homeIpAddr}:3000/api/v1/students/color/${color.toLowerCase()}` 
+    `http://${schoolIpAddr}:3000/api/v1/students/color/${color.toLowerCase()}` 
     :
-    `http://${homeIpAddr}:3000/api/v1/students`;
+    `http://${schoolIpAddr}:3000/api/v1/students`;
     const response = await fetch(url);
     const data = await response.json();
     setStudents(data)
@@ -21,7 +20,7 @@ export const fetchStudents = async (color, setStudents, setIsLoading) => {
 export const fetchStudent = async (id, setStudent) => { 
   try {
     const response = await fetch( 
-      `http://${homeIpAddr}:3000/api/v1/students/${id}`
+      `http://${schoolIpAddr}:3000/api/v1/students/${id}`
     );
     const data = await response.json();
     setStudent(data);
@@ -33,7 +32,7 @@ export const fetchStudent = async (id, setStudent) => {
 export const fetchNewestStudent = async () => { 
   try {
     const response = await fetch( 
-      `http://${homeIpAddr}:3000/api/v1/students/newest`
+      `http://${schoolIpAddr}:3000/api/v1/students/newest`
     );
     const data = await response.json();
     return data;
