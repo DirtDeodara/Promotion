@@ -32,18 +32,5 @@ export default StyleSheet.create({
     justifyContent: "center",
     marginTop: 10,
     marginBottom: 10
-  },
-  stripe: {
-    width: 10,
-    height: 28,
-    borderWidth: 1,
-    borderColor: "black"
-  },
-  filled: {
-    width: 8,
-    height: 28,
-    borderColor: "white",
-    borderWidth: 2,
-    backgroundColor: "white"
   }
 })
