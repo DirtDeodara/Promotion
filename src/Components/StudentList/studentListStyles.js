@@ -49,6 +49,6 @@ export default StyleSheet.create({
     right: 30,
     bottom: 6,
     height: 30,
-    width: 30,
+    width: 60,
   }
 });

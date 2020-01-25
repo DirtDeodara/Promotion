@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { withRouter } from 'react-router-native';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity, FlatList } from "react-native";
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import NavButton from '../NavButton/NavButton'
 import { AntDesign } from "@expo/vector-icons";
@@ -21,6 +21,7 @@ const StudentList = ({ match, history }) => {
   }
   
   const listOfStudents = ({ item: student }) => {
+    const [maincolor, stripeColor] = student.promotions.belt_color.split('/').slice(0, 2)
     const now = moment();
     let then;
     if(student.promotions) {
@@ -32,7 +33,11 @@ const StudentList = ({ match, history }) => {
       if(student.promotions) {
         return (
           <View style={{ flexDirection: "row" }}>
-            <View style={{ ...styles.beltIndicator, backgroundColor: student.promotions.belt_color  === 'brown' ? '#654321' : student.promotions.belt_color }}/> 
+            <View style={{ ...styles.beltIndicator,flexDirection: 'row' }}>
+              <View style={{ width: 18, height: 24, backgroundColor: maincolor  === 'brown' ? '#654321' : maincolor }}/> 
+              <View style={{ width: 18, height: 24, backgroundColor: stripeColor  === 'brown' ? '#654321' : stripeColor }}/> 
+              <View style={{ width: 18, height: 24, backgroundColor: maincolor  === 'brown' ? '#654321' : maincolor }}/> 
+            </View>
             <Text style={styles.date}>{`${daysSinceLastPromotion} days ago`}</Text>
           </View>
         )
@@ -78,7 +83,7 @@ const StudentList = ({ match, history }) => {
     </View>
     {history.index === 0
       ? 
-      <View style={{  width: 346, height: 100 }}/>
+      <View style={{ width: 346, height: 100 }}/>
       : 
       <View style={styles.button}>
         <NavButton icon={backIcon}/>
