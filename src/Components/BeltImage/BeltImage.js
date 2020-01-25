@@ -1,12 +1,19 @@
 import React from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import styles from './beltImageStyles';
 
-const BeltImage = ({ color, stripes }) => {
-  const standInColor = "Yellow/White/Youth"; //TODO delete this and pass in 'color' again below on line 9
+const BeltImage = ({ color, stripes, promotionType }) => {
+  const numOfStripes = promotionType === 'belt' ? 0 : stripes;
+  const stripeElements = [...Array(4)].map((_, i) => (
+    <View
+      key={i}
+      style={ numOfStripes > i ? styles.filled : { ...styles.stripe, backgroundColor: "black" } }
+    ></View>
+  )).reverse();
 
-  const youthBelt = () => {
-    const [maincolor, stripeColor] = standInColor.toLowerCase().split('/').slice(0, 2)
+  const belt = () => {
+    const [maincolor, stripeColor] = color.split('/').slice(0, 2)
+    console.log(maincolor,stripeColor)
     return (
     <View style={{ flexDirection: "row"}}>
       <View name="main-belt" 
@@ -14,7 +21,7 @@ const BeltImage = ({ color, stripes }) => {
           flexDirection: "column", 
           width: 210, 
           backgroundColor: maincolor }}>
-          <View name="horizontal-stripe" style={{ width: 208, height: 10, backgroundColor: stripeColor, bottom: 10}}/>
+          <View name="horizontal-stripe" style={{ width: 208, height: 11, backgroundColor: stripeColor, bottom: 9}}/>
       </View>
       <View name="stripe-bar" 
         style={{ 
@@ -24,64 +31,21 @@ const BeltImage = ({ color, stripes }) => {
           width: 80, 
           backgroundColor: "black", 
           }}>
-        {stripes}
+        {stripeElements}
       </View>
       <View name="end-cap" 
         style={{ ...styles.container,
           flexDirection: "column", 
           width: 10, 
           backgroundColor: maincolor }}>
-          <View name="horizontal-stripe" style={{ width: 8, height: 10, backgroundColor: stripeColor, bottom: 10}}/>
-      </View>
-    </View>
-    )
-  }
-
-  const adultBelt = () => {
-    return (
-      <View name="main-belt" 
-      style={{ ...styles.container,
-        flexDirection: "row", 
-        width: 300, 
-        backgroundColor: color === 'brown' ?  '#654321' : color }}>
-      <View name="stripe-bar" 
-        style={{ 
-          ...styles.container,
-          flexDirection: "row", 
-          justifyContent: "space-around", 
-          width: 80, 
-          backgroundColor: "black", 
-          marginRight: 10, 
-          bottom: 9 }}>
-        {stripes}
+          <View name="horizontal-stripe" style={{ width: 8, height: 11, backgroundColor: stripeColor, bottom: 9}}/>
       </View>
     </View>
     )
   }
 
   
-
-  if(color.length > 12){
-    return youthBelt();
-  } else {
-    return adultBelt();
-  }
-
-//   <View name="main-belt" 
-//   style={{ ...styles.container, 
-//     width: 300, 
-//     backgroundColor: color === 'brown' ?  '#654321' : color }}>
-//   <View name="stripe-bar" 
-//     style={{ 
-//       ...styles.container, 
-//       justifyContent: "space-around", 
-//       width: 80, 
-//       backgroundColor: "black", 
-//       marginRight: 10, 
-//       bottom: 9 }}>
-//     {stripes}
-//   </View>
-// </View>
+  return belt();
   
 }
 

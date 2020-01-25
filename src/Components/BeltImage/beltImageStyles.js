@@ -8,5 +8,18 @@ export default StyleSheet.create({
     marginBottom: 10,
     borderColor: "black",
     borderWidth: 1
+  },
+  stripe: {
+    width: 10,
+    height: 28,
+    borderWidth: 1,
+    borderColor: "black"
+  },
+  filled: {
+    width: 8,
+    height: 28,
+    borderColor: "white",
+    borderWidth: 2,
+    backgroundColor: "white"
   }
 })
