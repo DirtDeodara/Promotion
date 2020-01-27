@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { NativeRouter, Route, Animated } from "react-router-native";
 import StudentList from './src/Components/StudentList/StudentList';
-import StudentListItem from './src/Components/StudentListItem/StudentListItem';
+import StudentDetail from './src/Components/StudentDetail/StudentDetail';
 import NewStudentForm from './src/Components/NewStudentForm/NewStudentForm';
 import Burger from "./src/Components/Burger/Burger";
 import DrawerMenu from "./src/Components/DrawerMenu/DrawerMenu";
@@ -19,7 +19,7 @@ export default function App() {
       <NativeRouter>
         <Burger handleTouch={handleTouch} />
         <Route path="/newStudentform" component={NewStudentForm} />
-        <Route path="/studentDetail/:id" component={StudentListItem} />
+        <Route path="/studentDetail/:id" component={StudentDetail} />
         <Route path="/studentList/:color" component={StudentList} />
         <Route exact path="/" component={StudentList} />
         <DrawerMenu handleTouch={handleTouch} position={position}/>
@@ -31,7 +31,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#CBD3F8",
+    backgroundColor: '#D4AF37',
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column"
