@@ -24,7 +24,7 @@ const NewStudentForm = () => {
   }
 
    handleSubmit = async () => {
-    const createStudentRes = await fetch(`http://${beziIpAddr}:3000/api/v1/students`, {
+    const createStudentRes = await fetch(`http://${homeIpAddr}:3000/api/v1/students`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ const NewStudentForm = () => {
 
     const student = await createStudentRes.json();
     
-    fetch(`http://${beziIpAddr}:3000/api/v1/promotions`, {
+    fetch(`http://${homeIpAddr}:3000/api/v1/promotions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -60,6 +60,7 @@ const NewStudentForm = () => {
             name="name"
             onChangeText={setName}
             value={name}
+            maxLength={35}
           />
           <Text>Birth Date</Text>
           <DatePicker
