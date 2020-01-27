@@ -10,7 +10,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     borderColor: 'black',
     borderWidth: 5,
-    borderRadius: 10,
+    // borderRadius: 10, //TODO not sure if i want this or not
   },
   nameText: {
     fontSize: 25,

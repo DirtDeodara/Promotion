@@ -6,7 +6,7 @@ import BeltImage from '../BeltImage/BeltImage';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import PromotionButtons from '../PromotionButtons/PromotionButtons';
 import styles from './studentDetailStyles';
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 const moment = require("moment");
 const placeHolderImage = require("../../../assets/a.jpg"); //TODO this is just a placeholer!!
 
@@ -24,6 +24,7 @@ const StudentDetail = ({ match }) => {
   )
 
   const backIcon = () => <AntDesign name="doubleleft" size={50} style={{ right: 2 }}/>;
+  const addIcon = () => <Ionicons name="md-add" size={65}/>;
 
   const now = moment();
 
@@ -57,7 +58,7 @@ const StudentDetail = ({ match }) => {
         </View>
       </View>
       <View style={styles.button}>
-        <NavButton icon={backIcon} handleSubmit={promotionType ? handleSubmit : null}/>
+        <NavButton icon={promotionType ? addIcon : backIcon} handleSubmit={promotionType ? handleSubmit : null}/>
       </View>
     </View>
   );
