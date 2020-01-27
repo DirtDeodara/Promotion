@@ -5,19 +5,19 @@ import NavButton from '../../Components/NavButton/NavButton';
 import BeltImage from '../BeltImage/BeltImage';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import PromotionButtons from '../PromotionButtons/PromotionButtons';
-import styles from './studentItemListStyles';
+import styles from './studentDetailStyles';
 import { AntDesign } from "@expo/vector-icons";
 const moment = require("moment");
 const placeHolderImage = require("../../../assets/a.jpg"); //TODO this is just a placeholer!!
 
 import { useStudent } from '../../hooks/student';
 
-const StudentListItem = ({ match }) => {
+const StudentDetail = ({ match }) => {
   const { student, loading, promoteStripe, promoteBelt } = useStudent(match.params.id);
   const [promotionType, setPromotionType] = useState(null);
   if(loading) return (
     <View> 
-      <View style={{ ...styles.container, backgroundColor: "black" }}>
+      <View style={{ ...styles.container, backgroundColor: "black", bottom: 50 }}>
         <LoadingSpinner />
       </View>
     </View>
@@ -28,7 +28,7 @@ const StudentListItem = ({ match }) => {
   const now = moment();
 
   const age = now.diff(moment(student.date_of_birth), "years");
-    console.log(student);
+    console.log('studentListItem', student);
   const beltColor = promotionType === 'belt' ? student.nextBeltColor: student.promotions.belt_color;
   const coachWhoPromoted = student.promotions.coach_who_promoted;
   const numOfStripes = promotionType === 'stripe' ? student.promotions.stripes + 1 : student.promotions.stripes;
@@ -63,4 +63,4 @@ const StudentListItem = ({ match }) => {
   );
 }
 
-export default withRouter(StudentListItem);
+export default withRouter(StudentDetail);
