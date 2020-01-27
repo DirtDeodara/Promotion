@@ -10,7 +10,8 @@ function MyDatePicker({ dob, changeDate }) {
           marginBottom: 10,
           borderColor: "black",
           borderWidth: 3.5,
-          borderRadius: 10
+          borderRadius: 10,
+          backgroundColor: 'white'
         }}
         date={dob}
         mode="date"
