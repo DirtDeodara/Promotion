@@ -12,12 +12,13 @@ const BeltImage = ({ color, stripes, promotionType }) => {
   )).reverse();
 
   const belt = () => {
-    const [maincolor, stripeColor] = color.split('/').slice(0, 2)
-    console.log(maincolor,stripeColor)
+    const [maincolor, stripeColor] = color.split('-').slice(0, 2)
+
     return (
     <View style={{ flexDirection: "row"}}>
       <View name="main-belt" 
         style={{ ...styles.container,
+          height: 30,
           flexDirection: "column", 
           width: 210, 
           backgroundColor: maincolor }}>
@@ -26,6 +27,7 @@ const BeltImage = ({ color, stripes, promotionType }) => {
       <View name="stripe-bar" 
         style={{ 
           ...styles.container,
+          bottom: 1,
           flexDirection: "row", 
           justifyContent: "space-around", 
           width: 80, 
@@ -35,7 +37,8 @@ const BeltImage = ({ color, stripes, promotionType }) => {
       </View>
       <View name="end-cap" 
         style={{ ...styles.container,
-          flexDirection: "column", 
+          flexDirection: "column",
+          height: 30, 
           width: 10, 
           backgroundColor: maincolor }}>
           <View name="horizontal-stripe" style={{ width: 8, height: 11, backgroundColor: stripeColor, bottom: 9}}/>

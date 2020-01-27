@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     justifyContent: "flex-end",
-    height: 30,
+    height: 32,
     marginTop: 8,
     marginBottom: 10,
     borderColor: "black",
@@ -11,13 +11,13 @@ export default StyleSheet.create({
   },
   stripe: {
     width: 10,
-    height: 28,
+    height: 30,
     borderWidth: 1,
     borderColor: "black"
   },
   filled: {
     width: 8,
-    height: 28,
+    height: 30,
     borderColor: "white",
     borderWidth: 2,
     backgroundColor: "white"
