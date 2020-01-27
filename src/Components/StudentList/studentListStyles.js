@@ -10,7 +10,7 @@ export default StyleSheet.create({
     flexDirection: "column",
     borderColor: "black",
     borderWidth: 5,
-    borderRadius: 10,
+    // borderRadius: 10,  //TODO not sure if i want radius or not
   },
   headers: {
     flexDirection: "row",
@@ -29,7 +29,7 @@ export default StyleSheet.create({
     height: 40,
     width: 336,
     flexDirection: "row",
-    backgroundColor: "white",
+    backgroundColor: "#E2E0DA",
     borderColor: "black",
     borderRadius: 5,
     borderWidth: 1,

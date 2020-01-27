@@ -21,7 +21,7 @@ const StudentList = ({ match, history }) => {
   }
   
   const listOfStudents = ({ item: student }) => {
-    const [maincolor, stripeColor] = student.promotions.belt_color.split('/').slice(0, 2)
+    const [maincolor, stripeColor] = student.promotions.belt_color.split('-').slice(0, 2)
     const now = moment();
     let then;
     if(student.promotions) {
