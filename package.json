@@ -5,14 +5,40 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "create-tables": "node data/create-tables.js",
+    "drop-tables": "node data/drop-tables.js",
+    "load-seed-data": "node data/load-seed-data.js",
+    "recreate-tables": "npm run drop-tables && npm run create-tables",
+    "setup-db": "npm run recreate-tables",
+    "setup-db:prod": "heroku run npm run setup-db",
+    "setup-heroku": "heroku addons:create heroku-postgresql:hobby-dev && heroku config:set PGSSLMODE=require"
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.2.3",
+    "@emotion/core": "^10.0.22",
+    "@emotion/native": "^10.0.22",
+    "@react-native-community/datetimepicker": "^2.1.0",
+    "@react-native-community/masked-view": "^0.1.5",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^1.7.0",
     "expo": "^35.0.0",
+    "moment": "^2.24.0",
+    "pg": "^7.12.1",
+    "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-dom": "16.8.3",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
-    "react-native-web": "^0.11.7"
+    "react-native": "^0.59.8",
+    "react-native-datepicker": "^1.7.2",
+    "react-native-gesture-handler": "~1.3.0",
+    "react-native-reanimated": "~1.2.0",
+    "react-native-safe-area-context": "^0.6.2",
+    "react-native-web": "^0.11.7",
+    "react-navigation": "^4.0.10",
+    "react-navigation-drawer": "^2.3.3",
+    "react-navigation-stack": "^2.0.9",
+    "react-router-dom": "^5.1.2",
+    "react-router-native": "^5.1.2"
   },
   "devDependencies": {
     "babel-preset-expo": "^7.1.0"
