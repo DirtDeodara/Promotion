@@ -1,18 +1,14 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import DatePicker from "react-native-datepicker";
+import styles from './datePickerStyles';
 
 function MyDatePicker({ dob, changeDate }) {
+  console.log(typeof(dob))
   return (
     <>
       <DatePicker
-        style={{
-          width: 200,
-          marginBottom: 10,
-          borderColor: "black",
-          borderWidth: 3.5,
-          borderRadius: 10,
-          backgroundColor: 'white'
-        }}
+        style={styles.picker}
         date={dob}
         mode="date"
         placeholder="select date"
@@ -36,6 +32,10 @@ function MyDatePicker({ dob, changeDate }) {
       />
     </>
   );
+}
+
+MyDatePicker.propTypes = {
+  dob: PropTypes.string
 }
 
 export default MyDatePicker;
