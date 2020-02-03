@@ -1,16 +1,16 @@
 import React from "react";
 import { TextInput, View, StyleSheet } from "react-native";
+import PropTypes from 'prop-types';
 
-function TextField(props) {
+function TextField({ onChangeText }) {
   return (
     <View style={styles.container}>
       <TextInput
-        onChangeText={props.onChangeText}
+        onChangeText={onChangeText}
         accessible={true}
         accessibilityLabel="Text input for student's name"
         style={styles.input}
         placeholder="   Student name..."
-        {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
         editable
         maxLength={60}
       />
