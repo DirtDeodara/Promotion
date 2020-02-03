@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
-import { youthBelts, adultBelts } from '../../data/beltTypes';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const PromotionButtons = ({ setPromotionType, promotionType }) => {
   const stripeSelected = promotionType === 'stripe';
@@ -14,9 +14,7 @@ const PromotionButtons = ({ setPromotionType, promotionType }) => {
   const toggleBeltPromotion = () => {
     setPromotionType(beltSelected ? null : 'belt')
   }
-  // const colorOptions = studentAge < 12 ? youthBelts : adultBelts;
-  // const indexOfCurrentColor = studentAge < 12 ? youthBelts.indexOf(color) : adultBelts.indexOf(color);
-  // const colorToPromoteTo = colorOptions[indexOfCurrentColor + 1] ? colorOptions[indexOfCurrentColor + 1].toLowerCase() : 'black';
+
   
   return (
     <View style={{ ...styles.container }}>
