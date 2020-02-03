@@ -1,5 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import PropTypes from 'prop-types';
+import { View, TouchableOpacity } from "react-native";
+import styles from './burgerStyles';
 
 const Burger = ({ handleTouch }) => {
   return (
@@ -7,31 +9,12 @@ const Burger = ({ handleTouch }) => {
       <View style={styles.lines}/>
       <View style={styles.lines}/>
       <View style={styles.lines}/>
-      {/* <Text style={styles.text}>Hello</Text> */}
     </TouchableOpacity>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 25,
-    flexDirection: "column",
-    justifyContent: "space-around",
-    alignItems: "flex-end",
-    height: 30,
-    marginBottom: 10,
-    left: 140,
-  },
-  text: {
-    fontSize: 50,
-  },
-  lines: {
-    width: 35,
-    height: 5,
-    borderRadius: 10,
-    backgroundColor: "black"
-    
-  }
-})
+Burger.propTypes = {
+  handleTouch: PropTypes.func.isRequired
+}
 
 export default Burger;
