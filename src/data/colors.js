@@ -1,15 +1,14 @@
 export default colors = [
-  "Yellow-White-Yellow",
-  "Grey-Black-Grey",
-  "Grey-Grey-Grey",
-  "Grey-White-Grey",
-  "White-Yellow-White",
-  "White-Orange-White",
-  "White-Green-White",
-  "White-White-White",
-  "Blue-Blue-Blue",
-  "Purple-Purple-Purple",
-  "Brown-Brown-Brown",
-  "Black-Black-Black"
+  "yellow-white-yellow",
+  "grey-black-grey",
+  "grey-grey-grey",
+  "grey-white-grey",
+  "white-yellow-white",
+  "white-orange-white",
+  "white-green-white",
+  "white-white-white",
+  "blue-blue-blue",
+  "purple-purple-purple",
+  "brown-brown-brown",
+  "black-black-black"
 ];
-
