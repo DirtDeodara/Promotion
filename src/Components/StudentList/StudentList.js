@@ -1,12 +1,14 @@
 import React, { useState, useEffect} from "react";
 import { withRouter } from 'react-router-native';
 import { View, Text, SafeAreaView, TouchableOpacity, FlatList } from "react-native";
+import PropTypes from 'prop-types';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import NavButton from '../NavButton/NavButton'
 import { AntDesign } from "@expo/vector-icons";
 import { fetchStudents } from '../../services/studentsApi';
 import styles from './studentListStyles';
 const moment = require("moment");
+import colorChecker from '../../utils/colorChecker';
 
 const StudentList = ({ match, history }) => {
   const [students, setStudents] = useState([]);
@@ -21,29 +23,26 @@ const StudentList = ({ match, history }) => {
   }
   
   const listOfStudents = ({ item: student }) => {
-    const [maincolor, stripeColor] = student.promotions.belt_color.split('-').slice(0, 2)
+    const [mainColor, secondaryColor] = student.belt_color.split('-').slice(0, 2)
+    console.log('XXXXXXXXX', student)
     const now = moment();
-    let then;
-    if(student.promotions) {
-      then = moment(student.promotions.createdAt);
-    }
+    const then = moment(student.createdAt);
+ 
     const daysSinceLastPromotion = now.diff(then, "days");
 
     const lastPromotionAndBeltColorField = () => {
-      if(student.promotions) {
+     
         return (
           <View style={{ flexDirection: "row" }}>
             <View style={{ ...styles.beltIndicator,flexDirection: 'row' }}>
-              <View style={{ width: 18, height: 24, backgroundColor: maincolor  === 'brown' ? '#654321' : maincolor }}/> 
-              <View style={{ width: 18, height: 24, backgroundColor: stripeColor  === 'brown' ? '#654321' : stripeColor }}/> 
-              <View style={{ width: 18, height: 24, backgroundColor: maincolor  === 'brown' ? '#654321' : maincolor }}/> 
+              <View style={{ width: 18, height: 24, backgroundColor: colorChecker(mainColor) }}/> 
+              <View style={{ width: 18, height: 24, backgroundColor: colorChecker(secondaryColor) }}/> 
+              <View style={{ width: 18, height: 24, backgroundColor: colorChecker(mainColor) }}/> 
             </View>
             <Text style={styles.date}>{`${daysSinceLastPromotion} days ago`}</Text>
           </View>
         )
-      } else {
-        return <Text style={styles.date}>New Student</Text>
-      }
+      
     };
 
     return (
