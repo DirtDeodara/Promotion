@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { fetchStudent } from '../services/studentsApi';
-import { schoolIpAddr, homeIpAddr, beziIpAddr} from '../data/ipAddresses.js';
+import { ipAddrToUse} from '../data/ipAddresses.js';
 
 export const useStudent = id => {
   const [student, setStudent] = useState();
   const [loading, setLoading] = useState(true);
 
   const promoteStripe = () => {
-    return fetch(`http://${beziIpAddr}:3000/api/v1/students/${student.id}/stripe`, {
+    return fetch(`http://${ipAddrToUse}:3000/api/v1/students/${student.id}/stripe`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ export const useStudent = id => {
   };
 
   const promoteBelt = () => {
-    return fetch(`http://${beziIpAddr}:3000/api/v1/students/${student.id}/belt`, {
+    return fetch(`http://${ipAddrToUse}:3000/api/v1/students/${student.id}/belt`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
