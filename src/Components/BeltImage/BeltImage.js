@@ -1,6 +1,11 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { View } from "react-native";
 import styles from './beltImageStyles';
+import colorChecker from '../../utils/colorChecker';
+import colorExtractor from '../../utils/colorExtractor';
+import BeltColorIcon from "./BeltColorIcon";
+
 
 const BeltImage = ({ color, stripes, promotionType }) => {
   const numOfStripes = promotionType === 'belt' ? 0 : stripes;
@@ -11,45 +16,37 @@ const BeltImage = ({ color, stripes, promotionType }) => {
     ></View>
   )).reverse();
 
-  const belt = () => {
-    const [maincolor, stripeColor] = color.split('-').slice(0, 2)
+  // const [mainColor, secondaryColor] = colorExtractor(color);
 
-    return (
-    <View style={{ flexDirection: "row"}}>
-      <View name="main-belt" 
-        style={{ ...styles.container,
-          height: 30,
-          flexDirection: "column", 
-          width: 210, 
-          backgroundColor: maincolor }}>
-          <View name="horizontal-stripe" style={{ width: 208, height: 11, backgroundColor: stripeColor, bottom: 9}}/>
-      </View>
-      <View name="stripe-bar" 
-        style={{ 
-          ...styles.container,
-          bottom: 1,
-          flexDirection: "row", 
-          justifyContent: "space-around", 
-          width: 80, 
-          backgroundColor: "black", 
-          }}>
-        {stripeElements}
-      </View>
-      <View name="end-cap" 
-        style={{ ...styles.container,
-          flexDirection: "column",
-          height: 30, 
-          width: 10, 
-          backgroundColor: maincolor }}>
-          <View name="horizontal-stripe" style={{ width: 8, height: 11, backgroundColor: stripeColor, bottom: 9}}/>
-      </View>
+  return (
+  <View style={{ flexDirection: "row"}}>
+    <View name="main-belt" style={styles.container}>
+      <BeltColorIcon  
+        beltWidth={208} 
+        beltHeight={10} 
+        flexDirection={'column'} 
+        color={color}
+        />
     </View>
-    )
-  }
-
-  
-  return belt();
-  
+    <View name="stripe-bar" 
+      style={styles.stripeBar}>
+      {stripeElements}
+    </View>
+    <View name="end-cap" style={styles.container}>
+      <BeltColorIcon  
+        beltWidth={8} beltHeight={10} 
+        flexDirection={'column'} 
+        color={color}
+        />
+    </View>
+  </View>
+  )
 }
+
+BeltImage.propTypes = {
+  color: PropTypes.string.isRequired, 
+  stripes: PropTypes.number, 
+  promotionType: PropTypes.string
+};
 
 export default BeltImage;
