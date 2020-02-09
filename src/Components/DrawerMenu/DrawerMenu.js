@@ -8,6 +8,7 @@ import BeltIndicator from '../BeltImage/BeltColorIcon';
 import { closeIcon } from '../../utils/icons';
 
 const DrawerMenu = ({ handleTouch, position, history }) => {
+
   const [openAnim] = useState(new Animated.Value(280));
   useEffect(() => {
     Animated.timing(
@@ -27,7 +28,7 @@ const DrawerMenu = ({ handleTouch, position, history }) => {
       <TouchableOpacity
         key={i}
         onPress={() => {
-          history.push(`/studentList/${color}`);
+          history.push(`/studentList/color/${color}`);
         }}
         style={{ flexDirection: 'column', borderWidth: 2 }}
       >

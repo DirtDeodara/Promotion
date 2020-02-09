@@ -1,7 +1,8 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { useHistory } from "react-router-native";
-import { AntDesign } from "@expo/vector-icons";
+import PropTypes from 'prop-types';
+// import { AntDesign } from "@expo/vector-icons";
 import styles from './navButtonStyles';
 
 function NavButton({ handleSubmit, icon }) { 
@@ -15,7 +16,7 @@ function NavButton({ handleSubmit, icon }) {
         }}
         style={styles.container}
       >
-        {icon()}
+        {icon}
       </TouchableOpacity>
    
   );
