@@ -6,6 +6,9 @@
 **Work in progress.** <br />
 Version 1.0 *should* be ready by the end of Febuary, 2020.
 
+***back-end repo***
+https://github.com/DirtDeodara/promotion-be
+
 ---
 Created with **ReactNative | Expo | Postrgres/Sequelize**
 
