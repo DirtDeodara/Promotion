@@ -1,19 +1,36 @@
 import { ipAddrToUse } from '../data/ipAddresses';
 
-export const fetchStudents = async (color, setStudents, setIsLoading) => {
-  try {
-    let url = color 
-    ? 
-    `http://${ipAddrToUse}:3000/api/v1/students/color/${color.toLowerCase()}` 
-    :
-    `http://${ipAddrToUse}:3000/api/v1/students`;
-    const response = await fetch(url);
-    const data = await response.json();
-    setStudents(data)
-    setIsLoading(false);
-  }
-  catch (err) {
-    console.log('Load students failed', err);
+export const fetchStudents = async (color, name, setStudents, setIsLoading) => {
+  if(color) {
+    try {
+      const response = await fetch(`http://${ipAddrToUse}:3000/api/v1/students/color/${color.toLowerCase()}`);
+      const data = await response.json();
+      setStudents(data)
+      setIsLoading(false);
+    }
+    catch (err) {
+      console.log('Load students failed', err);
+    }
+  } else if(name) {
+    const reformattedName = name.split(' ').join('')
+    try {
+      const response = await fetch(`http://${ipAddrToUse}:3000/api/v1/students/name/${reformattedName}`);
+      const data = await response.json();
+      setStudents(data)
+      setIsLoading(false);
+    } catch (err) {
+      console.log("The desired student failed to load", err);
+    }
+  } else {
+    try {
+      const response = await fetch(`http://${ipAddrToUse}:3000/api/v1/students`);
+      const data = await response.json();
+      setStudents(data)
+      setIsLoading(false);
+    }
+    catch (err) {
+      console.log('Load students failed', err);
+    }
   }
 };
 
@@ -30,16 +47,6 @@ export const fetchStudent = async (id, setStudent, setIsLoading) => {
   }
 };
 
-export const fetchNewestStudent = async () => { 
-  try {
-    const response = await fetch( 
-      `http://${ipAddrToUse}:3000/api/v1/students/newest`
-    );
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.log("The desired student failed to load", err);
-  }
-};
+
 
 
