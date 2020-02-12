@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 // import { AntDesign } from "@expo/vector-icons";
 import styles from './navButtonStyles';
 
-function NavButton({ handleSubmit, icon }) { 
+function NavButton({ handleSubmit, icon, hasSubmitted }) { 
   const history = useHistory();
  
   return (
       <TouchableOpacity
+        disabled={hasSubmitted}
         onPress={ async() => {
           handleSubmit && await handleSubmit();
           history.goBack();
