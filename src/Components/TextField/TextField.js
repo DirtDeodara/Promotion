@@ -2,7 +2,7 @@ import React from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 import PropTypes from 'prop-types';
 
-function TextField({ onChangeText }) {
+function TextField({ onChangeText, value }) {
   return (
     <View style={styles.container}>
       <TextInput
@@ -12,7 +12,8 @@ function TextField({ onChangeText }) {
         style={styles.input}
         placeholder="   Student name..."
         editable
-        maxLength={60}
+        maxLength={35}
+        value={value}
       />
     </View>
   );
