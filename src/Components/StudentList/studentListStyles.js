@@ -17,7 +17,8 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     alignContent: "space-around",
     fontSize: 10,
-    color: "white"
+    color: "white",
+    bottom: 2
   },
   header: {
     color: "white"
@@ -46,7 +47,6 @@ export default StyleSheet.create({
   beltIndicator: {
     borderWidth: 3,
     borderRadius: 5,
-    right: 30,
     bottom: 6,
     height: 30,
     width: 60,

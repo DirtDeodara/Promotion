@@ -4,60 +4,46 @@ import { View, Text, SafeAreaView, TouchableOpacity, FlatList } from "react-nati
 import PropTypes from 'prop-types';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import NavButton from '../NavButton/NavButton'
-import { AntDesign } from "@expo/vector-icons";
+import { backIcon } from '../../utils/icons';
 import { fetchStudents } from '../../services/studentsApi';
 import styles from './studentListStyles';
 const moment = require("moment");
-import colorChecker from '../../utils/colorChecker';
+import BeltColorIcon from "../BeltImage/BeltColorIcon";
+import { useStudents } from '../../hooks/student';
 
 const StudentList = ({ match, history }) => {
   const [students, setStudents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
-    fetchStudents(match.params.color, setStudents, setIsLoading);
-  }, [match.params.color]);
+    fetchStudents(match.params.color, match.params.name, setStudents, setIsLoading);
+  }, [match.params.color, match.params.name]);
 
-  const backIcon = () => {
-    return <AntDesign name="doubleleft" size={50} style={{ right: 2 }}/>
-  }
   
   const listOfStudents = ({ item: student }) => {
-    const [mainColor, secondaryColor] = student.belt_color.split('-').slice(0, 2)
-    console.log('XXXXXXXXX', student)
     const now = moment();
     const then = moment(student.createdAt);
- 
     const daysSinceLastPromotion = now.diff(then, "days");
-
-    const lastPromotionAndBeltColorField = () => {
-     
-        return (
-          <View style={{ flexDirection: "row" }}>
-            <View style={{ ...styles.beltIndicator,flexDirection: 'row' }}>
-              <View style={{ width: 18, height: 24, backgroundColor: colorChecker(mainColor) }}/> 
-              <View style={{ width: 18, height: 24, backgroundColor: colorChecker(secondaryColor) }}/> 
-              <View style={{ width: 18, height: 24, backgroundColor: colorChecker(mainColor) }}/> 
-            </View>
-            <Text style={styles.date}>{`${daysSinceLastPromotion} days ago`}</Text>
-          </View>
-        )
-      
-    };
 
     return (
       <TouchableOpacity
         onPress={() => {
-          history.push(`/studentDetail/${student.id}`);
+          history.push(`/studentDetail/${student.studentId}`);
         }}
         student={student}
         style={styles.item}
       >
         <Text style={styles.name}>{student.name}</Text>
-        {lastPromotionAndBeltColorField()}
+        <View style={{ flexDirection: 'row', width: 160, justifyContent: 'space-between'}}>
+          <View style={styles.beltIndicator}>
+            <BeltColorIcon beltWidth={18} beltHeight={24} flexDirection='row' color={student.belt_color}/>
+          </View>
+          <Text style={styles.date}>{`${daysSinceLastPromotion} days ago`}</Text>
+        </View>
       </TouchableOpacity>
     );
   };
+
 
   return (
     <SafeAreaView>
