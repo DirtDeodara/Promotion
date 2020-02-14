@@ -20,8 +20,8 @@ export default StyleSheet.create({
   stripe: {
     width: 18,
     height: 60,
-    borderRightColor: 'grey',
-    borderLeftColor: 'grey',
+    borderRightColor: '#2A2A2A',
+    borderLeftColor: '#2A2A2A',
     borderWidth: 1,
     backgroundColor: "black"
   },
