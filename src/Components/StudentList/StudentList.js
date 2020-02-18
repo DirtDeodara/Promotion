@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { withRouter } from 'react-router-native';
-import { View, Text, SafeAreaView, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import PropTypes from 'prop-types';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import NavButton from '../NavButton/NavButton'
@@ -9,7 +9,6 @@ import { fetchStudents } from '../../services/studentsApi';
 import styles from './studentListStyles';
 const moment = require("moment");
 import BeltColorIcon from "../BeltImage/BeltColorIcon";
-import { useStudents } from '../../hooks/student';
 
 const StudentList = ({ match, history }) => {
   const [students, setStudents] = useState([]);
@@ -18,6 +17,14 @@ const StudentList = ({ match, history }) => {
   useEffect(() => {
     fetchStudents(match.params.color, match.params.name, setStudents, setIsLoading);
   }, [match.params.color, match.params.name]);
+
+  // if(isLoading) return (
+  //   <View> 
+  //     <View style={{ ...styles.container, backgroundColor: "black", bottom: 50 }}>
+  //       <LoadingSpinner />
+  //     </View>
+  //   </View>
+  // )
 
   
   const listOfStudents = ({ item: student }) => {
@@ -46,24 +53,22 @@ const StudentList = ({ match, history }) => {
 
 
   return (
-    <SafeAreaView>
+    <View>
     <View style={styles.container}>
       {isLoading 
         ? 
         <LoadingSpinner /> 
         : 
-        <View style={styles.container}>
-          <View style={styles.headers}>
-            <Text style={styles.header}>Student Name                                  Last Promotion</Text>
-          </View>
-          <FlatList
-            keyExtractor={(_, i) => i.toString()}
-            data={students}
-            renderItem={listOfStudents}
-            initialNumToRender={10}
-            showsVerticalScrollIndicator={false}
-          /> 
-        </View>
+       <>
+        <Text style={styles.header}>Student Name                                  Last Promotion</Text>
+        <FlatList
+          keyExtractor={(_, i) => i.toString()}
+          data={students}
+          renderItem={listOfStudents}
+          initialNumToRender={10}
+          showsVerticalScrollIndicator={false}
+        /> 
+      </>
       }
     </View>
     {history.index === 0
@@ -73,7 +78,7 @@ const StudentList = ({ match, history }) => {
       <View style={styles.button}>
         <NavButton icon={backIcon}/>
       </View>}
-  </SafeAreaView>
+  </View>
   );
 };
 

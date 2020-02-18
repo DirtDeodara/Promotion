@@ -12,14 +12,6 @@ export default StyleSheet.create({
     borderWidth: 5,
     // borderRadius: 10,  //TODO not sure if i want radius or not
   },
-  headers: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignContent: "space-around",
-    fontSize: 10,
-    color: "white",
-    bottom: 2
-  },
   header: {
     color: "white"
   },
@@ -30,7 +22,7 @@ export default StyleSheet.create({
     height: 40,
     width: 336,
     flexDirection: "row",
-    backgroundColor: "#E2E0DA",
+    backgroundColor: "#E0E4FF",
     borderColor: "black",
     borderRadius: 5,
     borderWidth: 1,
@@ -42,13 +34,13 @@ export default StyleSheet.create({
     height: 100,
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "column",
+    flexDirection: "column"
   },
   beltIndicator: {
     borderWidth: 3,
     borderRadius: 5,
     bottom: 6,
     height: 30,
-    width: 60,
+    width: 60
   }
 });
