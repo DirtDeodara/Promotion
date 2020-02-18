@@ -47,7 +47,6 @@ const Header = ({ handleTouch, history }) => {
       >
         {searchIcon}
       </TouchableOpacity>
-
       <TouchableOpacity name='burgerMenuButton'
         style={{ bottom: 3, right: 1 }}
         onPress={() => handleTouch()}
