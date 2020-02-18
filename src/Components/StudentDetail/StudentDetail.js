@@ -19,8 +19,11 @@ const StudentDetail = ({ match, history }) => {
 
   if(loading) return (
     <View> 
-      <View style={{ ...styles.container, backgroundColor: "black", bottom: 50 }}>
+      <View style={{ ...styles.container, backgroundColor: "black" }}>
         <LoadingSpinner />
+      </View>
+      <View style={{...styles.button}}>
+        <NavButton icon={promotionType ? addIcon : backIcon} handleSubmit={promotionType ? handleSubmit : null}/>
       </View>
     </View>
   )
@@ -41,7 +44,7 @@ const StudentDetail = ({ match, history }) => {
       //title
       'Warning!',
       //body
-      'Are you sure you want to delete this student?',
+      `Are you sure you want to delete ${student.name.toUpperCase()} from the database?`,
       [
         {text: 'Yes', onPress: handleDelete},
         {text: 'No', onPress: () => console.log('No Pressed'), style: 'cancel'},
@@ -63,37 +66,34 @@ const StudentDetail = ({ match, history }) => {
 
   const handlePressEdit = () => {
     history.push(`/editForm/${student.id}`);
-   
   }
 
   return (
     <View>
-      <View style={{ ...styles.container, backgroundColor: "white" }}>
-        <View style={styles.container}>
-          <TouchableOpacity 
-            name='deleteButton'
-            onPress={deleteAlertHandler}
-            style={{ position: 'absolute', top: 10, left: 10 }}>
-            {deleteIcon}
-          </TouchableOpacity>
-          <TouchableOpacity 
-            name='editButton'
-            onPress={handlePressEdit}
-            style={{ position: 'absolute', top: 10, left: 295 }}>
-            {editIcon}
-          </TouchableOpacity>
-          <Text name='student-name' style={styles.nameText}>{student.name}</Text>
-          <Text name='student-age'style={styles.text}>{age} years old</Text>
-          <Image name='student-image'style={styles.image} source={placeHolderImage} />
-          <View>
-            <PromotionButtons
-              promotionType={promotionType}
-              setPromotionType={setPromotionType}
-            />
-          </View>
-          <BeltImage color={beltColor} stripes={numOfStripes} promotionType={promotionType}/>
-          <Text name='last-promotion-info'style={styles.text}>Last striped by {student.promotions.coach_who_promoted} {daysSinceLastPromotion} days ago</Text>
+      <View style={styles.container}>
+        <TouchableOpacity 
+          name='deleteButton'
+          onPress={deleteAlertHandler}
+          style={{ position: 'absolute', top: 10, left: 10 }}>
+          {deleteIcon}
+        </TouchableOpacity>
+        <TouchableOpacity 
+          name='editButton'
+          onPress={handlePressEdit}
+          style={{ position: 'absolute', top: 10, left: 295 }}>
+          {editIcon}
+        </TouchableOpacity>
+        <Text name='student-name' style={styles.nameText}>{student.name}</Text>
+        <Text name='student-age'style={styles.text}>{age} years old</Text>
+        <Image name='student-image'style={styles.image} source={placeHolderImage} />
+        <View>
+          <PromotionButtons
+            promotionType={promotionType}
+            setPromotionType={setPromotionType}
+          />
         </View>
+        <BeltImage color={beltColor} stripes={numOfStripes} promotionType={promotionType}/>
+        <Text name='last-promotion-info'style={styles.text}>Last striped by {student.promotions.coach_who_promoted} {daysSinceLastPromotion} days ago</Text>
       </View>
       <View style={styles.button}>
         <NavButton icon={promotionType ? addIcon : backIcon} handleSubmit={promotionType ? handleSubmit : null}/>
