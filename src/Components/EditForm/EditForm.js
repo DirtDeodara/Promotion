@@ -7,26 +7,34 @@ import NavButton from '../NavButton/NavButton';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import StripeInput from '../StripeInput/StripeInput';
 import BeltPicker from '../BeltPicker/BeltPicker';
-import useStudent from '../../hooks/student';
-import { fetchStudent } from '../../services/studentsApi';
+import { useStudent } from '../../hooks/student';
 import { ipAddrToUse } from '../../data/ipAddresses';
 import { backIcon, addStudentIcon, confirmEditIcon } from '../../utils/icons';
 import styles from './editFormStyles';
 import NewBeltPicker from '../NewBeltPicker/NewBeltPicker';
-const moment = require("moment");
+import colorTextConverter from '../../utils/colorTextConverter';
+const moment = require('moment');
 
 const EditForm = ({ match, history }) => {
-  // const { student, setStudent, loading, promoteStripe, promoteBelt } = useStudent(match.params.id);
-  const [student, setStudent] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [hasSubmitted , setHasSubmitted] = useState(false);
+  const { student, setStudent, loading } = useStudent(match.params.id);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [hasEditted, setHasEditted] = useState(false);
-
-  useEffect(() => {
-    fetchStudent(match.params.id, setStudent, setLoading)
-  }, []);
   
-  iterateStripes = () => {
+    if(loading) {
+      return (
+        <View>
+          <View style={styles.loadingContainer}>
+            <LoadingSpinner />
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-evenly',  height: 100, top: 10}}>
+          <NavButton icon={confirmEditIcon} handleSubmit={editAlertHandler} hasEditted={hasEditted} hasSubmitted={hasSubmitted} />
+          <NavButton icon={backIcon}/>
+        </View>
+        </View>
+      )
+    }
+  
+  const iterateStripes = () => {
     setHasEditted(true);
     setStudent((previousStudent) => ({
       ...previousStudent,
@@ -46,7 +54,7 @@ const EditForm = ({ match, history }) => {
         `Are you sure you want these changes? 
         Name: ${student.name}
         Date of birth: ${moment(student.date_of_birth).format('MMM/Do/YYYY')}
-        Belt color: ${student.promotions.belt_color}
+        Belt color: ${colorTextConverter(student.promotions.belt_color)}
         Number of stripes: ${student.promotions.stripes}
         `,
         [
@@ -81,56 +89,50 @@ const EditForm = ({ match, history }) => {
   return (
     <View>
         <View style={styles.container}>
-        {loading 
-          ?
-          <LoadingSpinner />
-          :
-          <>
-            <Text>EDIT SCREEN</Text>
-            <Text>Student Name</Text>
-            <TextField
-              name="name"
-              onChangeText={(name) => {
-                setHasEditted(true);
-                setStudent((previousStudent) => ({
-                  ...previousStudent,
-                  name
-                }))
-              }}
-              value={student.name}
-            />
-            <Text>Birth Date</Text>
-            <DatePicker
-              dob={student.date_of_birth}
-              changeDate={(date_of_birth) => {
-                setHasEditted(true);
-                setStudent((previousStudent) => ({
-                  ...previousStudent,
-                  date_of_birth
-                }))
-              }}
-              style={{ margin: 10 }}
-            />
-            <Text>Belt Color</Text>
-            {/* <BeltPicker  
-              selectedColor={student.promotions.belt_color} 
-              setSelectedColor={(belt_color) => {
-                setHasEditted(true);
-                setStudent((previousStudent) => ({
-                  ...previousStudent,
-                  promotions: {
-                    ...previousStudent.promotions,
-                    belt_color
-                  }
-                }))
-              }}/> */}
-              <NewBeltPicker />
-            <Text>Number of Stripes</Text>
-            <StripeInput count={student.promotions.stripes} iterateStripes={iterateStripes}/>
-          </>
-        }
+      
+          <Text>EDIT SCREEN</Text>
+          <Text>Student Name</Text>
+          <TextField
+            name='name'
+            onChangeText={(name) => {
+              setHasEditted(true);
+              setStudent((previousStudent) => ({
+                ...previousStudent,
+                name
+              }))
+            }}
+            value={student.name}
+          />
+          <Text>Birth Date</Text>
+          <DatePicker
+            dob={student.date_of_birth}
+            changeDate={(date_of_birth) => {
+              setHasEditted(true);
+              setStudent((previousStudent) => ({
+                ...previousStudent,
+                date_of_birth
+              }))
+            }}
+            style={{ margin: 10 }}
+          />
+          <Text>Belt Color</Text>
+          {/* <BeltPicker  
+            selectedColor={student.promotions.belt_color} 
+            setSelectedColor={(belt_color) => {
+              setHasEditted(true);
+              setStudent((previousStudent) => ({
+                ...previousStudent,
+                promotions: {
+                  ...previousStudent.promotions,
+                  belt_color
+                }
+              }))
+            }}/> */}
+            <NewBeltPicker />
+          <Text>Number of Stripes</Text>
+          <StripeInput count={student.promotions.stripes} iterateStripes={iterateStripes}/>
         </View>
-        <View style={{ flexDirection: "row", justifyContent: "space-evenly", marginTop: 10, marginBottom: 10 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10, marginBottom: 10 }}>
           <NavButton icon={confirmEditIcon} handleSubmit={editAlertHandler} hasEditted={hasEditted} hasSubmitted={hasSubmitted} />
           <NavButton icon={backIcon}/>
         </View>
