@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import styles from './promotionButtonsStyles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const PromotionButtons = ({ setPromotionType, promotionType }) => {
@@ -15,7 +16,6 @@ const PromotionButtons = ({ setPromotionType, promotionType }) => {
     setPromotionType(beltSelected ? null : 'belt')
   }
 
-  
   return (
     <View style={{ ...styles.container }}>
 
@@ -27,7 +27,11 @@ const PromotionButtons = ({ setPromotionType, promotionType }) => {
           backgroundColor: stripeSelected ? 'black' : 'white'
         }}
         >
-        <MaterialCommunityIcons name='reorder-vertical' color={stripeSelected ? 'gold' : 'black'} size={45} style={{ alignSelf: 'center', top: 2 }}/>
+        <MaterialCommunityIcons 
+          name='reorder-vertical' 
+          color={stripeSelected ? 'gold' : 'black'} 
+          size={45} 
+          style={{ alignSelf: 'center', top: 2 }}/>
       </TouchableOpacity>
 
       <TouchableOpacity 
@@ -38,35 +42,15 @@ const PromotionButtons = ({ setPromotionType, promotionType }) => {
           backgroundColor: beltSelected ? 'black' : 'white'
         }}
       >
-       <MaterialCommunityIcons name='trophy-outline' color={beltSelected ? 'gold' : 'black'} size={40} style={{ alignSelf: 'center', top: 8 }}/>
+       <MaterialCommunityIcons 
+        name='trophy-outline' 
+        color={beltSelected ? 'gold' : 'black'} 
+        size={40} 
+        style={{ alignSelf: 'center', top: 8 }}/>
       </TouchableOpacity>
 
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    width: 300,
-    height: 70,
-    marginTop: 10
-  },
-  stripeButton: { 
-    borderWidth: 4, 
-    width: 60, 
-    height: 60, 
-    borderRadius: 30, 
-    top: 5 
-  },
-  promoteBeltButton: {
-    width: 60, 
-    height: 60, 
-    borderWidth: 4, 
-    borderRadius: 30, 
-    alignSelf: 'center'
-  }
-});
 
 export default PromotionButtons;
