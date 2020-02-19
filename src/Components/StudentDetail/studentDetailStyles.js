@@ -4,8 +4,8 @@ export default StyleSheet.create({
   container: {
     width: 346,
     height: 460,
+    backgroundColor: '#E0E4FF',
     alignItems: 'center',
-    backgroundColor: '#E2E0DA',
     justifyContent: 'center',
     flexDirection: 'column',
     borderColor: 'black',
@@ -13,25 +13,22 @@ export default StyleSheet.create({
     // borderRadius: 10, //TODO not sure if i want this or not
   },
   nameText: {
-    fontSize: 25,
+    fontSize: 23
   },
   text: {
-    fontSize: 20,
+    fontSize: 20
   },
   image: {
     borderColor: 'black',
     borderWidth: 5,
-    borderRadius: 10,
+    borderRadius: 20,
     width: 180,
     height: 180
   },
   button: {
     width: 346,
-    height: 80,
-    flexDirection: 'row',
+    height: 100,
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10
+    justifyContent: 'center'
   }
 })

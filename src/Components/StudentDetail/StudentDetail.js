@@ -10,8 +10,8 @@ import styles from './studentDetailStyles';
 import { backIcon, addIcon, deleteIcon, editIcon } from '../../utils/icons';
 import { useStudent } from '../../hooks/student';
 import { ipAddrToUse } from '../../data/ipAddresses';
-const moment = require("moment");
-const placeHolderImage = require("../../../assets/a.jpg"); //TODO this is just a placeholer!!
+const moment = require('moment');
+const placeHolderImage = require('../../../assets/a.jpg'); //TODO this is just a placeholer!!
 
 const StudentDetail = ({ match, history }) => {
   const { student, loading, promoteStripe, promoteBelt } = useStudent(match.params.id);
@@ -19,7 +19,7 @@ const StudentDetail = ({ match, history }) => {
 
   if(loading) return (
     <View> 
-      <View style={{ ...styles.container, backgroundColor: "black" }}>
+      <View style={{ ...styles.container, backgroundColor: 'black' }}>
         <LoadingSpinner />
       </View>
       <View style={{...styles.button}}>
@@ -29,10 +29,10 @@ const StudentDetail = ({ match, history }) => {
   )
 
   const now = moment();
-  const age = now.diff(moment(student.date_of_birth), "years");
+  const age = now.diff(moment(student.date_of_birth), 'years');
   const beltColor = promotionType === 'belt' ? student.nextBeltColor : student.promotions.belt_color;
   const numOfStripes = promotionType === 'stripe' ? student.promotions.stripes + 1 : student.promotions.stripes;
-  const daysSinceLastPromotion = now.diff(moment(student.promotions.createdAt), "days")
+  const daysSinceLastPromotion = now.diff(moment(student.promotions.createdAt), 'days')
 
   const handleSubmit = async () => {
     if(promotionType === 'stripe') return promoteStripe();
