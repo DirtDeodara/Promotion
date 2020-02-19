@@ -4,7 +4,7 @@ export default styles = StyleSheet.create({
   container: {
     width: 340,
     height: 45,
-    marginTop: 30,
+    marginTop: 32,
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 6
