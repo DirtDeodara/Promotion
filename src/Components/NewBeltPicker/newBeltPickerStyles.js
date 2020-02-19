@@ -11,6 +11,7 @@ export default StyleSheet.create({
     borderColor: 'black',
     borderWidth: 5,
     borderRadius: 10,
+    marginBottom: 10
   },
   beltIndicator: {
     borderWidth: 3,

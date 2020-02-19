@@ -1,11 +1,11 @@
-import React, { useState, useEffect} from "react";
+import React from 'react';
 import { withRouter } from 'react-router-native';
-import { View, Text, SafeAreaView, TouchableOpacity, FlatList } from "react-native";
+import { View, TouchableOpacity, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import colors from '../../data/colors';
 
 import styles from './newBeltPickerStyles';
-import BeltColorIcon from "../BeltImage/BeltColorIcon";
+import BeltColorIcon from '../BeltImage/BeltColorIcon';
 
 const NewBeltPicker = ({ setBeltColor }) => {
   
