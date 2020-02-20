@@ -25,7 +25,7 @@ export const useStudent = id => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        coach_who_promoted: 'dirt'
+        coach_who_promoted: 'Eddie'
       })
     })
   }
@@ -34,5 +34,5 @@ export const useStudent = id => {
     fetchStudent(id, setStudent, setLoading)
   }, [id]);
 
-  return { student, loading, promoteStripe, promoteBelt };
+  return { student, setStudent, loading, promoteStripe, promoteBelt };
 };
