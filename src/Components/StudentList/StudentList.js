@@ -1,36 +1,28 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect} from 'react';
 import { withRouter } from 'react-router-native';
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import NavButton from '../NavButton/NavButton'
 import { backIcon } from '../../utils/icons';
 import { fetchStudents } from '../../services/studentsApi';
 import styles from './studentListStyles';
-const moment = require("moment");
-import BeltColorIcon from "../BeltImage/BeltColorIcon";
+const moment = require('moment');
+import BeltColorIcon from '../BeltImage/BeltColorIcon';
 
 const StudentList = ({ match, history }) => {
   const [students, setStudents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
-    fetchStudents(match.params.color, match.params.name, setStudents, setIsLoading);
-  }, [match.params.color, match.params.name]);
+    fetchStudents(match.params.color, match.params.name, match.params.age, setStudents, setIsLoading);
+  }, [match.params.color, match.params.name, match.params.age]);
 
-  // if(isLoading) return (
-  //   <View> 
-  //     <View style={{ ...styles.container, backgroundColor: "black", bottom: 50 }}>
-  //       <LoadingSpinner />
-  //     </View>
-  //   </View>
-  // )
-
-  
+ 
   const listOfStudents = ({ item: student }) => {
     const now = moment();
     const then = moment(student.createdAt);
-    const daysSinceLastPromotion = now.diff(then, "days");
+    const daysSinceLastPromotion = now.diff(then, 'days');
 
     return (
       <TouchableOpacity
