@@ -11,7 +11,6 @@ import { useStudent } from '../../hooks/student';
 import { ipAddrToUse } from '../../data/ipAddresses';
 import { backIcon, addStudentIcon, confirmEditIcon } from '../../utils/icons';
 import styles from './editFormStyles';
-import NewBeltPicker from '../NewBeltPicker/NewBeltPicker';
 import colorTextConverter from '../../utils/colorTextConverter';
 const moment = require('moment');
 
@@ -89,8 +88,6 @@ const EditForm = ({ match, history }) => {
   return (
     <View>
         <View style={styles.container}>
-      
-          <Text>EDIT SCREEN</Text>
           <Text>Student Name</Text>
           <TextField
             name='name'
@@ -116,7 +113,7 @@ const EditForm = ({ match, history }) => {
             style={{ margin: 10 }}
           />
           <Text>Belt Color</Text>
-          {/* <BeltPicker  
+          <BeltPicker  
             selectedColor={student.promotions.belt_color} 
             setSelectedColor={(belt_color) => {
               setHasEditted(true);
@@ -127,8 +124,7 @@ const EditForm = ({ match, history }) => {
                   belt_color
                 }
               }))
-            }}/> */}
-            <NewBeltPicker />
+            }}/>
           <Text>Number of Stripes</Text>
           <StripeInput count={student.promotions.stripes} iterateStripes={iterateStripes}/>
         </View>
