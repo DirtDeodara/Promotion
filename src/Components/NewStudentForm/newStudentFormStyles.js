@@ -10,6 +10,6 @@ export default StyleSheet.create({
     flexDirection: 'column',
     borderColor: 'black',
     borderWidth: 5,
-    borderRadius: 10,
+    // borderRadius: 10,
   }
 });
