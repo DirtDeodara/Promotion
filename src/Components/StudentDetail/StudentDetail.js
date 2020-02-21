@@ -74,7 +74,7 @@ const StudentDetail = ({ match, history }) => {
         <TouchableOpacity 
           name='deleteButton'
           onPress={deleteAlertHandler}
-          style={{ position: 'absolute', top: 10, left: 10 }}>
+          style={{ position: 'absolute', top: 7, left: 7 }}>
           {deleteIcon}
         </TouchableOpacity>
         <TouchableOpacity 
@@ -100,6 +100,11 @@ const StudentDetail = ({ match, history }) => {
       </View>
     </View>
   );
+}
+
+StudentDetail.proptypes = {
+  match: PropTypes.object,
+  history: PropTypes.object
 }
 
 export default withRouter(StudentDetail);

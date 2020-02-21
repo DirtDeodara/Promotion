@@ -7,7 +7,7 @@ export const closeIcon = <AntDesign name='close' size={45} style={{ paddingLeft:
 export const addStudentIcon = <MaterialIcons name='person-add' size={50} style={{ right: 2 }} />;
 export const searchIcon = <FontAwesome name='search' size={30} />;
 export const burgerIcon = <FontAwesome name='bars' size={50} />;
-export const deleteIcon = <AntDesign name='deleteuser' size={30} />;
+export const deleteIcon = <MaterialCommunityIcons name='delete-forever' size={33} />;
 export const editIcon = <MaterialIcons name='edit' size={30} />;
 export const addStripeIcon = <Ionicons name='md-add' size={30} />;
 export const confirmEditIcon = <Feather name='check' size={58} />;
