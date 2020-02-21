@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-native';
 import { View, TouchableOpacity, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
-import colors from '../../data/colors';
+import colors from '../../data/beltColors';
 
 import styles from './newBeltPickerStyles';
 import BeltColorIcon from '../BeltImage/BeltColorIcon';
@@ -13,7 +13,7 @@ const NewBeltPicker = ({ setBeltColor }) => {
     return (
       <TouchableOpacity onPress={() => setBeltColor(beltColor)}>
         <View style={{ borderTopWidth: 1, borderBottomWidth: 1, marginVertical: 2 }}>
-          <BeltColorIcon beltWidth={190} beltHeight={10} flexDirection='column' color={belt}/>
+          <BeltColorIcon beltWidth={290} beltHeight={10} flexDirection='column' color={belt}/>
         </View>
       </TouchableOpacity>
     );

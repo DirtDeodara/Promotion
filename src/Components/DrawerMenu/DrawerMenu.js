@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-native';
 import { Animated, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './drawerMenuStyles';
-import colors from '../../data/colors';
+import colors from '../../data/beltColors';
 import BeltIndicator from '../BeltImage/BeltColorIcon';
 import { closeIcon } from '../../utils/icons';
 import { ScrollView } from 'react-native-gesture-handler';
