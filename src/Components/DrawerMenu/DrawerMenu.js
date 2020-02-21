@@ -6,8 +6,9 @@ import styles from './drawerMenuStyles';
 import colors from '../../data/colors';
 import BeltIndicator from '../BeltImage/BeltColorIcon';
 import { closeIcon } from '../../utils/icons';
+import { ScrollView } from 'react-native-gesture-handler';
 
-const DrawerMenu = ({ handleTouch, position, history }) => {
+const DrawerMenu = ({ handleTouch, position, setPosition, history }) => {
 
   const [openAnim] = useState(new Animated.Value(280));
   useEffect(() => {
@@ -19,21 +20,23 @@ const DrawerMenu = ({ handleTouch, position, history }) => {
       }
     ).start();
   }, [position.isOpen]);
+
+  const handleNavPress = path => {
+    history.push(path);
+    setTimeout(() => {
+      setPosition({ isOpen: !position.isOpen })
+    }, 500);
+  }
   
-
-
-
   const listOfLinks = colors.map((color, i) => {
     return (
       <TouchableOpacity
         key={i}
-        onPress={() => {
-          history.push(`/studentList/color/${color}`);
-        }}
-        style={{ flexDirection: 'column', borderWidth: 2 }}
+        onPress={() => handleNavPress(`/studentList/color/${color}`)}
+        style={{ flexDirection: 'column', borderWidth: 2, margin: 3}}
       >
         <BeltIndicator
-          beltWidth={180}
+          beltWidth={175}
           beltHeight={10}
           flexDirection={'column'}
           color={color}
@@ -48,25 +51,39 @@ const DrawerMenu = ({ handleTouch, position, history }) => {
       style={{
         ...styles.container,
         borderWidth: 3,
-        transform: [
-          {
-            translateX: openAnim
-          }
-        ]
+        transform: [{ translateX: openAnim }]
       }}
     >
-      <TouchableOpacity onPress={() => handleTouch()}>
+     <ScrollView>
+      <TouchableOpacity style={{ left: 30 }} onPress={() => handleTouch()}>
         {closeIcon}
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => history.push('/newStudentForm')}>
+      <TouchableOpacity onPress={() => handleNavPress('/newStudentForm')}>
         <Text style={styles.link}>New Student Form</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => history.push('/')}>
+      <TouchableOpacity onPress={() => handleNavPress('/')}>
         <Text style={styles.link}>All Students</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleNavPress('/studentList/age/adults')}>
+        <Text style={styles.link}>Adults</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleNavPress('/studentList/age/teens')}>
+        <Text style={styles.link}>Teens</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleNavPress('/studentList/age/kids')}>
+        <Text style={styles.link}>Kids</Text>
+      </TouchableOpacity>
       {listOfLinks}
+      </ScrollView> 
     </Animated.View>
   );
 };
+
+DrawerMenu.propTypes = {
+  handleTouch: PropTypes.func.isRequired,
+  position: PropTypes.object.isRequired,
+  setPosition: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
+}
 
 export default withRouter(DrawerMenu);

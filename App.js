@@ -24,8 +24,9 @@ export default function App() {
         <Route path='/studentDetail/:id' component={StudentDetail} />
         <Route path='/studentList/color/:color' component={StudentList} />
         <Route path='/studentList/name/:name' component={StudentList} />
+        <Route path='/studentList/age/:age' component={StudentList} />
         <Route exact path='/' component={StudentList} />
-        <DrawerMenu handleTouch={handleTouch} position={position}/>
+        <DrawerMenu handleTouch={handleTouch} position={position} setPosition={setPosition}/>
       </NativeRouter>
     </View>
   );

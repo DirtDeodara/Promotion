@@ -10,11 +10,11 @@ export default StyleSheet.create({
     justifyContent: "space-evenly",
     backgroundColor: "#E2E0DA",
     marginBottom: 20,
-    paddingTop: 24,
-    paddingBottom: 30
+    paddingTop: 25,
+    paddingBottom: 20
   },
   link: {
-    width: 200,
+    width: 178,
     color: "black",
     fontSize: 18,
     paddingTop: 5,
