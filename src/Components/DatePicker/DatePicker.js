@@ -4,7 +4,6 @@ import DatePicker from "react-native-datepicker";
 import styles from './datePickerStyles';
 
 const MyDatePicker = ({ dob, changeDate }) => {
-  console.log(typeof(dob))
   return (
     <>
       <DatePicker
