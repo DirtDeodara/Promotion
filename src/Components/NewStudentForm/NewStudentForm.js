@@ -62,7 +62,7 @@ const NewStudentForm = () => {
           <Text>Birth Date</Text>
           <DatePicker
             dob={dob}
-            changeDate={setDOB}
+            changeDate={(dob) => setDOB(dob)}
             style={{ margin: 10 }}
           />
          {/* {imageDisplay()} */}

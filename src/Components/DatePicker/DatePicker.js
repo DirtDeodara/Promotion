@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DatePicker from "react-native-datepicker";
 import styles from './datePickerStyles';
 
-function MyDatePicker({ dob, changeDate }) {
+const MyDatePicker = ({ dob, changeDate }) => {
   console.log(typeof(dob))
   return (
     <>
@@ -35,7 +35,7 @@ function MyDatePicker({ dob, changeDate }) {
 }
 
 MyDatePicker.propTypes = {
-  dob: PropTypes.string
+  dob: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 }
 
 export default MyDatePicker;
