@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-native';
 import { View, TouchableOpacity, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import colors from '../../data/beltColors';
@@ -19,7 +18,6 @@ const NewBeltPicker = ({ setBeltColor }) => {
     );
   };
 
-
   return (
     <View style={styles.container}>
       <FlatList
@@ -32,5 +30,9 @@ const NewBeltPicker = ({ setBeltColor }) => {
     </View>
   );
 };
+
+NewBeltPicker.proptypes = {
+  setBeltColor: PropTypes.func.isRequired
+}
 
 export default NewBeltPicker;
