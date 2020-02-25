@@ -1,6 +1,6 @@
 import { ipAddrToUse } from '../data/ipAddresses';
 
-export const fetchStudents = async (color, name, age, setStudents, setIsLoading) => {
+export const fetchStudents = async (color, name, age, coach, setStudents, setIsLoading) => {
   if(color) {
     try {
       const response = await fetch(`http://${ipAddrToUse}:3000/api/v1/students/color/${color.toLowerCase()}`);
@@ -42,6 +42,15 @@ export const fetchStudents = async (color, name, age, setStudents, setIsLoading)
   } else if(age === 'kids') {
     try {
       const response = await fetch(`http://${ipAddrToUse}:3000/api/v1/students/age/${age}`);
+      const data = await response.json();
+      setStudents(data)
+      setIsLoading(false);
+    } catch (err) {
+      console.log("The desired student failed to load", err);
+    }
+  } else if(coach) {
+    try {
+      const response = await fetch(`http://${ipAddrToUse}:3000/api/v1/students/coach/${coach}`);
       const data = await response.json();
       setStudents(data)
       setIsLoading(false);
