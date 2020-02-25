@@ -9,12 +9,12 @@ import StripeInput from '../StripeInput/StripeInput';
 import BeltPicker from '../BeltPicker/BeltPicker';
 import { useStudent } from '../../hooks/student';
 import { ipAddrToUse } from '../../data/ipAddresses';
-import { backIcon, addStudentIcon, confirmEditIcon } from '../../utils/icons';
+import { backIcon, confirmEditIcon } from '../../utils/icons';
 import styles from './editFormStyles';
 import colorTextConverter from '../../utils/colorTextConverter';
 const moment = require('moment');
 
-const EditForm = ({ match, history }) => {
+const EditForm = ({ match }) => {
   const { student, setStudent, loading } = useStudent(match.params.id);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [hasEditted, setHasEditted] = useState(false);
@@ -134,6 +134,10 @@ const EditForm = ({ match, history }) => {
         </View>
       </View>
   )
+}
+
+EditForm.proptypes = {
+  match: PropTypes.object,
 }
 
 export default EditForm;
