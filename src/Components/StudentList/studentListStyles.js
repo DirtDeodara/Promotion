@@ -1,29 +1,30 @@
 import { StyleSheet } from 'react-native'
-
+import colorTheme from '../../data/colorStyleVariables';
 export default StyleSheet.create({
   container: {
     width: 346,
     height: 460,
-    backgroundColor: "black",
+    backgroundColor: colorTheme.borderColor,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    borderColor: "black",
-    borderWidth: 5,
-    // borderRadius: 10,  //TODO not sure if i want radius or not
+    borderColor: colorTheme.borderColor,
+    borderWidth: 5
   },
   header: {
     color: "white"
   },
+  text: {
+    fontSize: 14
+  },
   item: {
     flex: 1,
-    fontSize: 30,
     justifyContent: "space-between",
     height: 40,
     width: 336,
     flexDirection: "row",
-    backgroundColor: "#E0E4FF",
-    borderColor: "black",
+    backgroundColor: colorTheme.containerBackgroundColor,
+    borderColor: colorTheme.borderColor,
     borderRadius: 5,
     borderWidth: 1,
     padding: 10,
