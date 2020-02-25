@@ -1,5 +1,6 @@
 import React from "react";
-import { TextInput, View, StyleSheet } from "react-native";
+import { TextInput, View } from "react-native";
+import styles from './textFieldStyles';
 import PropTypes from 'prop-types';
 
 function TextField({ onChangeText, value }) {
@@ -19,21 +20,9 @@ function TextField({ onChangeText, value }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    width: 200,
-    height: 46,
-    backgroundColor: 'white',
-    borderColor: "black",
-    borderWidth: 4,
-    borderRadius: 10,
-    marginBottom: 10
-  },
-  input: {
-    fontSize: 20,
-    marginTop: 5,
-    marginLeft: 10
-  }
-});
+TextField.proptypes = {
+  onChangeText: PropTypes.func.isRequired, 
+  value: PropTypes.string.isRequired
+}
 
 export default TextField;
