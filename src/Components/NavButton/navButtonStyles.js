@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colorTheme from '../../data/colorStyleVariables';
 
 export default StyleSheet.create({
   container: {
@@ -7,7 +8,7 @@ export default StyleSheet.create({
     width: 70,
     height: 70,
     color: "black",
-    backgroundColor: "#2B5B8A",
+    backgroundColor: colorTheme.navButtonColor,
     borderColor: "black",
     borderWidth: 4,
     borderRadius: 35,

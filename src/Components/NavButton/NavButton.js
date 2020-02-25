@@ -23,8 +23,13 @@ function NavButton({ icon, handleSubmit, hasSubmitted }) {
       >
         {icon}
       </TouchableOpacity>
-   
   );
+}
+
+NavButton.proptypes = {
+  icon: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  hasSubmitted: PropTypes.bool.isRequired
 }
 
 export default NavButton;
