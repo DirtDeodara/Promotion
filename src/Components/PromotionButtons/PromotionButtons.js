@@ -53,4 +53,9 @@ const PromotionButtons = ({ setPromotionType, promotionType }) => {
   );
 };
 
+PromotionButtons.proptypes = {
+  setPromotionType: PropTypes.func.isRequired, 
+  promotionType: PropTypes.string
+}
+
 export default PromotionButtons;
