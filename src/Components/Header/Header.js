@@ -60,7 +60,8 @@ const Header = ({ handleTouch, history }) => {
 };
 
 Header.propTypes = {
-  handleTouch: PropTypes.func.isRequired
+  handleTouch: PropTypes.func.isRequired,
+  history: PropTypes.object
 };
 
 export default withRouter(Header);
