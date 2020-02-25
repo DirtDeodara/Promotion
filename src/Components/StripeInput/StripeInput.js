@@ -21,4 +21,9 @@ function StripeInput({ count, iterateStripes }) {
   );
 }
 
+StripeInput.proptypes = {
+  count: PropTypes.number.isRequired,
+  iterateStripes: PropTypes.func.isRequired
+}
+
 export default StripeInput;
