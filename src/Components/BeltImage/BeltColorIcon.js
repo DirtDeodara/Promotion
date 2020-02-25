@@ -1,9 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
+import Proptypes from 'prop-types';
 import colorExtractor from '../../utils/colorExtractor';
 import colorChecker from '../../utils/colorChecker';
 
-export default ({ beltWidth, beltHeight, flexDirection, color}) => {  
+const BeltColorIcon = ({ beltWidth, beltHeight, flexDirection, color}) => {  
   const [mainColor, secondaryColor] = colorExtractor(color); 
   return (
     <View style={{ flexDirection: flexDirection }}>
@@ -13,3 +14,12 @@ export default ({ beltWidth, beltHeight, flexDirection, color}) => {
     </View>
   )
 }
+
+BeltColorIcon.proptypes = {
+  beltHeight: Proptypes.number.isRequired,
+  beltWidth: Proptypes.number.isRequired,
+  flexDirection: Proptypes.string.isRequired,
+  color: Proptypes.string.isRequired
+}
+
+export default BeltColorIcon;
