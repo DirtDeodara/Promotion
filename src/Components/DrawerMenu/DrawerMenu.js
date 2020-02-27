@@ -33,7 +33,7 @@ const DrawerMenu = ({ handleTouch, position, setPosition, history }) => {
       <TouchableOpacity
         key={i}
         onPress={() => handleNavPress(`/studentList/color/${color}`)}
-        style={{ flexDirection: 'column', borderWidth: 2, margin: 3}}
+        style={{ flexDirection: 'column', borderWidth: 2, margin: 5, borderRadius: 2, elevation: 3 }}
       >
         <BeltIndicator
           beltWidth={175}
@@ -55,7 +55,7 @@ const DrawerMenu = ({ handleTouch, position, setPosition, history }) => {
       }}
     >
      <ScrollView>
-      <TouchableOpacity style={{ left: 30 }} onPress={() => handleTouch()}>
+      <TouchableOpacity style={{ left: 30, top: 5 }} onPress={() => handleTouch()}>
         {closeIcon}
       </TouchableOpacity>
       <TouchableOpacity onPress={() => handleNavPress('/newStudentForm')}>
@@ -72,6 +72,12 @@ const DrawerMenu = ({ handleTouch, position, setPosition, history }) => {
       </TouchableOpacity>
       <TouchableOpacity onPress={() => handleNavPress('/studentList/age/kids')}>
         <Text style={styles.link}>Kids</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleNavPress('/studentList/coach/Eddie')}>
+        <Text style={styles.link}>Eddie's Students</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleNavPress('/studentList/coach/Chris')}>
+        <Text style={styles.link}>Chris' Students</Text>
       </TouchableOpacity>
       {listOfLinks}
       </ScrollView> 

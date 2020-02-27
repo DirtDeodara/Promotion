@@ -4,7 +4,6 @@ import { fetchStudents } from '../services/studentsApi';
 export const useStudents = match => {
   const [students, setStudents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(students);
   
   useEffect(() => {
     fetchStudents(match.params.color, match.params.name, match.params.age, match.params.coach, setStudents, setIsLoading);
