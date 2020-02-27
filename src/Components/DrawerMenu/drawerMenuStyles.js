@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colorTheme from '../../data/colorStyleVariables';
 
 export default StyleSheet.create({
   container: {
@@ -8,10 +9,11 @@ export default StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-evenly",
-    backgroundColor: "#E2E0DA",
+    backgroundColor: colorTheme.drawerMenuBackground,
     marginBottom: 20,
     paddingTop: 25,
-    paddingBottom: 20
+    paddingBottom: 20,
+    elevation: 6
   },
   link: {
     width: 178,
@@ -19,6 +21,7 @@ export default StyleSheet.create({
     fontSize: 18,
     paddingTop: 5,
     paddingLeft: 25,
-    height: 35
+    height: 35,
+    
   }
 });
