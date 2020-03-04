@@ -4,8 +4,8 @@ import colorTheme from '../../data/colorStyleVariables';
 export default StyleSheet.create({
   container: {
     position: "absolute",
-    height: 650,
-    width: 200,
+    height: 565,
+    width: 348,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-evenly",

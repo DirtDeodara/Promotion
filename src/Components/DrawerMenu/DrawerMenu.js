@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-native';
-import { Animated, Text, TouchableOpacity } from 'react-native';
+import { Animated, Text, TouchableOpacity, Easing } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './drawerMenuStyles';
 import colors from '../../data/beltColors';
 import BeltIndicator from '../BeltImage/BeltColorIcon';
-import { closeIcon } from '../../utils/icons';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const DrawerMenu = ({ handleTouch, position, setPosition, history }) => {
 
-  const [openAnim] = useState(new Animated.Value(280));
+  const [openAnim] = useState(new Animated.Value(630));
   useEffect(() => {
     Animated.timing(
       openAnim,
       {
-        toValue: position.isOpen ? 85 : 280,
-        duration: 150,
+        toValue: position.isOpen ? 45 : 630,
+        duration: 450,
+        easing: Easing.easeOutCirc
       }
     ).start();
   }, [position.isOpen]);
@@ -51,13 +51,10 @@ const DrawerMenu = ({ handleTouch, position, setPosition, history }) => {
       style={{
         ...styles.container,
         borderWidth: 3,
-        transform: [{ translateX: openAnim }]
+        transform: [{ translateY: openAnim }]
       }}
     >
-     <ScrollView>
-      <TouchableOpacity style={{ left: 30, top: 5 }} onPress={() => handleTouch()}>
-        {closeIcon}
-      </TouchableOpacity>
+     <ScrollView showsVerticalScrollIndicator={false}>
       <TouchableOpacity onPress={() => handleNavPress('/newStudentForm')}>
         <Text style={styles.link}>New Student Form</Text>
       </TouchableOpacity>
