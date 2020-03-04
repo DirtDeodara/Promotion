@@ -7,6 +7,7 @@ import NewStudentForm from './src/Components/NewStudentForm/NewStudentForm';
 import Header from './src/Components/Header/Header';
 import DrawerMenu from './src/Components/DrawerMenu/DrawerMenu';
 import EditForm from './src/Components/EditForm/EditForm';
+import colorTheme from './src/data/colorStyleVariables';
 
 export default function App() {
   const [position, setPosition] = useState({ isOpen: false });
@@ -18,13 +19,14 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NativeRouter>
-        <Header handleTouch={handleTouch} />
+        <Header handleTouch={handleTouch} position={position}/>
         <Route path='/newStudentform' component={NewStudentForm} />
         <Route path='/editForm/:id' component={EditForm} />
         <Route path='/studentDetail/:id' component={StudentDetail} />
         <Route path='/studentList/color/:color' component={StudentList} />
         <Route path='/studentList/name/:name' component={StudentList} />
         <Route path='/studentList/age/:age' component={StudentList} />
+        <Route path='/studentList/coach/:coach' component={StudentList} />
         <Route exact path='/' component={StudentList} />
         <DrawerMenu handleTouch={handleTouch} position={position} setPosition={setPosition}/>
       </NativeRouter>
@@ -35,9 +37,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EF476F',
+    backgroundColor: colorTheme.mainBackgroundColor,
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
   }
 });

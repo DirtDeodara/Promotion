@@ -25,7 +25,7 @@ export const useStudent = id => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        coach_who_promoted: 'Eddie'
+        coach_who_promoted: 'Eddie' //TODO change this to chris and then to eddie
       })
     })
   }
