@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native';
+import colorTheme from '../../data/colorStyleVariables';
 
 export default StyleSheet.create({
   container: {
     width: 346,
     height: 460,
-    backgroundColor: '#E0E4FF',
+    backgroundColor: colorTheme.containerBackgroundColor,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    borderColor: 'black',
+    borderColor: colorTheme.borderColor,
     borderWidth: 5,
-    // borderRadius: 10, //TODO not sure if i want this or not
+    elevation: 5
   },
   nameText: {
     fontSize: 23

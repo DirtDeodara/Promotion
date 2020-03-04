@@ -12,6 +12,7 @@ export default StyleSheet.create({
     borderColor: "black",
     borderWidth: 4,
     borderRadius: 35,
-    marginBottom: 10
+    marginBottom: 10,
+    elevation: 5
   }
 })

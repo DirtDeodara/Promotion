@@ -9,7 +9,8 @@ export default StyleSheet.create({
     justifyContent: "center",
     flexDirection: "column",
     borderColor: colorTheme.borderColor,
-    borderWidth: 5
+    borderWidth: 5,
+    elevation: 5
   },
   header: {
     color: "white"

@@ -10,8 +10,8 @@ export default StyleSheet.create({
     justifyContent: "center",
     flexDirection: "column",
     borderColor: "black",
-    borderWidth: 5
-    // borderRadius: 10,
+    borderWidth: 5,
+    elevation: 5
   },
   loadingContainer: {
     width: 346,

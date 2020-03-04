@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colorTheme from '../../data/colorStyleVariables';
 
 export default StyleSheet.create({
   container: {
@@ -6,7 +7,7 @@ export default StyleSheet.create({
     height: 62,
     flexDirection: "row",
     justifyContent: 'space-between',
-    backgroundColor: '#E2E0DA'
+    backgroundColor: colorTheme.containerBackgroundColor
   },
   blackBar: {
     backgroundColor: "black",

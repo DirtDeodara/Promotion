@@ -13,12 +13,14 @@ export default styles = StyleSheet.create({
     height: 60, 
     borderRadius: 30, 
     top: 5,
+    elevation: 5
   },
   promoteBeltButton: {
     width: 60, 
     height: 60, 
     borderWidth: 4, 
     borderRadius: 30, 
-    alignSelf: 'center'
+    alignSelf: 'center',
+    elevation: 5
   }
 });
