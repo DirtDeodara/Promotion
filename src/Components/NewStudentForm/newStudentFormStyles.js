@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
+import colorTheme from '../../data/colorStyleVariables';
 
 export default StyleSheet.create({
   container: {
     width: 346,
     height: 460,
-    backgroundColor: '#E2E0DA',
+    backgroundColor: colorTheme.containerBackgroundColor,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',

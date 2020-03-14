@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import PropTypes from 'prop-types';
+import ImagePicker from '../ImagePicker/ImagePicker';
 import TextField from '../TextField/TextField';
 import DatePicker from '../DatePicker/DatePicker';
 import NavButton from '../NavButton/NavButton';
@@ -11,6 +11,7 @@ import { backIcon, addStudentIcon } from '../../utils/icons';
 const NewStudentForm = () => {
   const [dob, setDOB] = useState(new Date());
   const [name, setName] = useState('');
+  const [image, setImage] = useState({ image: null });
   const [stripes, setStripes] = useState(0);
   const [hasSubmitted , setHasSubmitted] = useState(false);
 
@@ -63,9 +64,9 @@ const NewStudentForm = () => {
           <DatePicker
             dob={dob}
             changeDate={(dob) => setDOB(dob)}
-            style={{ margin: 10 }}
+            style={{  }}
           />
-         {/* {imageDisplay()} */}
+          <ImagePicker image={image} setImage={setImage}/>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-evenly", marginTop: 10, marginBottom: 10 }}>
           <NavButton hasSubmitted={hasSubmitted} icon={addStudentIcon} handleSubmit={handleSubmit}/>

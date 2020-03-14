@@ -20,10 +20,17 @@
     "@emotion/native": "^10.0.22",
     "@react-native-community/datetimepicker": "^2.1.0",
     "@react-native-community/masked-view": "^0.1.5",
+    "aws-sdk": "^2.639.0",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.7.0",
     "expo": "^35.0.0",
+    "expo-image-picker": "^8.0.2",
+    "expo-media-library": "^8.0.0",
+    "expo-permissions": "^8.0.0",
     "moment": "^2.24.0",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "path": "^0.12.7",
     "pg": "^7.12.1",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
@@ -39,7 +46,8 @@
     "react-navigation-drawer": "^2.3.3",
     "react-navigation-stack": "^2.0.9",
     "react-router-dom": "^5.1.2",
-    "react-router-native": "^5.1.2"
+    "react-router-native": "^5.1.2",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^7.1.0"
