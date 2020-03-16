@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Alert, CameraRoll } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import TextField from '../TextField/TextField';
 import DatePicker from '../DatePicker/DatePicker';
@@ -29,7 +29,7 @@ const EditForm = ({ match }) => {
           <NavButton icon={confirmEditIcon} handleSubmit={editAlertHandler} hasEditted={hasEditted} hasSubmitted={hasSubmitted} />
           <NavButton icon={backIcon}/>
         </View>
-        </View>
+      </View>
       )
     }
   

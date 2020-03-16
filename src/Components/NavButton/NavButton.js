@@ -16,7 +16,7 @@ function NavButton({ icon, handleSubmit, hasSubmitted }) {
             history.goBack();
           }
           catch(e) {
-            console.log('did nothing')
+            console.log('did nothing', e)
           }
         }}
         style={styles.container}

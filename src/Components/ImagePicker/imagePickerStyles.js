@@ -6,7 +6,15 @@ export default StyleSheet.create({
     fontSize: 21,
   },
   row: { flexDirection: 'row' },
-  image: { width: 200, height: 230, backgroundColor: 'black', borderWidth: 5, borderColor: 'black', borderRadius: 10 },
+  image: { 
+    width: 200, 
+    height: 200, 
+    backgroundColor: 'black', 
+    borderWidth: 5, 
+    borderColor: 'black', 
+    borderRadius: 10,
+    // resizeMode: 'contain'
+  },
   button: {
     padding: 8,
     marginHorizontal: 13,

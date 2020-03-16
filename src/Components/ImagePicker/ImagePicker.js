@@ -9,8 +9,8 @@ export default ImagePickerComp = ({ image, setImage }) => {
   const selectPicture = async () => {
     await Permissions.askAsync(Permissions.CAMERA_ROLL);
     const { cancelled, uri } = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      aspect: [3, 4],
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      aspect: [3, 3],
       allowsEditing: true,
     });
     if (!cancelled) setImage({ image: uri });
@@ -19,7 +19,9 @@ export default ImagePickerComp = ({ image, setImage }) => {
   const takePicture = async () => {
     await Permissions.askAsync(Permissions.CAMERA);
     const { cancelled, uri } = await ImagePicker.launchCameraAsync({
-      allowsEditing: false,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      aspect: [3, 3],
+      allowsEditing: true,
     });
     if(cancelled) {
       return null;

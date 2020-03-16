@@ -7,12 +7,10 @@ import NavButton from '../NavButton/NavButton';
 import styles from './newStudentFormStyles';
 import { ipAddrToUse } from '../../data/ipAddresses';
 import { backIcon, addStudentIcon } from '../../utils/icons';
+import { useStudentInfo } from '../../hooks/createStudent';
 
 const NewStudentForm = () => {
-  const [dob, setDOB] = useState(new Date());
-  const [name, setName] = useState('');
-  const [image, setImage] = useState({ image: null });
-  const [stripes, setStripes] = useState(0);
+  const { uploadPhoto, dob, setDOB, name, setName, image, setImage, stripes, setStripes} = useStudentInfo();
   const [hasSubmitted , setHasSubmitted] = useState(false);
 
   iterateStripes = () => {
@@ -21,6 +19,7 @@ const NewStudentForm = () => {
 
    handleSubmit = async () => {
     setHasSubmitted(true);
+    uploadPhoto();
     const createStudentRes = await fetch(`http://${ipAddrToUse}:3000/api/v1/students`, {
       method: 'POST',
       headers: {
@@ -34,7 +33,7 @@ const NewStudentForm = () => {
     });
 
     const student = await createStudentRes.json();
-    
+  
     fetch(`http://${ipAddrToUse}:3000/api/v1/promotions`, {
       method: 'POST',
       headers: {
@@ -47,7 +46,7 @@ const NewStudentForm = () => {
         coach_who_promoted: 'dirt'
       })
     })
-    .then(setHasSubmitted(false))
+    .then(setHasSubmitted(false));
   };
 
   return (
