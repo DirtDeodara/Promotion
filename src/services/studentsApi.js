@@ -82,7 +82,3 @@ export const fetchStudent = async (id, setStudent, setIsLoading) => {
     console.log("The desired student failed to load", err);
   }
 };
-
-
-
-

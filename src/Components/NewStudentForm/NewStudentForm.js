@@ -5,6 +5,7 @@ import TextField from '../TextField/TextField';
 import DatePicker from '../DatePicker/DatePicker';
 import NavButton from '../NavButton/NavButton';
 import styles from './newStudentFormStyles';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { ipAddrToUse } from '../../data/ipAddresses';
 import { backIcon, addStudentIcon } from '../../utils/icons';
 import { useStudentInfo } from '../../hooks/createStudent';
@@ -12,6 +13,17 @@ import { useStudentInfo } from '../../hooks/createStudent';
 const NewStudentForm = () => {
   const { uploadPhoto, dob, setDOB, name, setName, image, setImage, stripes, setStripes} = useStudentInfo();
   const [hasSubmitted , setHasSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  if(isLoading) return (
+    <View> 
+      <View style={{ ...styles.container, backgroundColor: 'black' }}>
+        <LoadingSpinner />
+      </View>
+      <View style={{...styles.button}}>
+      </View>
+    </View>
+  )
 
   iterateStripes = () => {
     setStripes(stripes < 4 ? stripes + 1 : 0);
@@ -19,7 +31,9 @@ const NewStudentForm = () => {
 
    handleSubmit = async () => {
     setHasSubmitted(true);
-    uploadPhoto();
+    setIsLoading(true);
+    const imageUrl = await uploadPhoto();
+    console.log(imageUrl)
     const createStudentRes = await fetch(`http://${ipAddrToUse}:3000/api/v1/students`, {
       method: 'POST',
       headers: {
@@ -28,7 +42,8 @@ const NewStudentForm = () => {
       body: JSON.stringify({
         name: name,
         date_of_birth: dob,
-        gym: "Straight Blast Gym"
+        gym: "Straight Blast Gym",
+        image_url: imageUrl
       }),
     });
 
@@ -46,7 +61,9 @@ const NewStudentForm = () => {
         coach_who_promoted: 'dirt'
       })
     })
-    .then(setHasSubmitted(false));
+    .then(setHasSubmitted(false))
+    .then(setIsLoading(false));
+
   };
 
   return (

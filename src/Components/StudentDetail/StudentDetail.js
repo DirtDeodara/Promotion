@@ -16,6 +16,7 @@ const placeHolderImage = require('../../../assets/a.jpg'); //TODO this is just a
 const StudentDetail = ({ match, history }) => {
   const { student, loading, promoteStripe, promoteBelt } = useStudent(match.params.id);
   const [promotionType, setPromotionType] = useState(null);
+  console.log({student})
 
   if(loading) return (
     <View> 
@@ -85,7 +86,7 @@ const StudentDetail = ({ match, history }) => {
         </TouchableOpacity>
         <Text name='student-name' style={styles.nameText}>{student.name}</Text>
         <Text name='student-age'style={styles.text}>{age} years old</Text>
-        <Image name='student-image'style={styles.image} source={placeHolderImage} />
+        <Image name='student-image'style={styles.image} source={{ uri: student.image_url }} />
         <View>
           <PromotionButtons
             promotionType={promotionType}

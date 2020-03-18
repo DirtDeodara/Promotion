@@ -1,0 +1,1 @@
+export default nameConverter = str => str.toLowerCase().split(' ').join('');

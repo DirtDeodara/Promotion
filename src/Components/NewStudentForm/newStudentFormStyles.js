@@ -12,5 +12,12 @@ export default StyleSheet.create({
     borderColor: 'black',
     borderWidth: 5,
     elevation: 5
-  }
+  },
+  button: {
+    width: 346,
+    height: 100,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column"
+  },
 });
